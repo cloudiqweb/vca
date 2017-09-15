@@ -1,0 +1,49 @@
+{
+ "Data" :[{
+  "VisitId": 0,
+  "Patient": {
+    "PatientId": 17812807,
+    "PetName": "Bean",
+    "SpeciesId": 1,
+    "Breed": "Chihuahua Smooth-coat",
+    "DisplayAge": "7 years 3 months",
+    "Weight": 4.11,
+    "NeuterStatus": 2,
+    "Sex": 1,
+    "Alert": "Alert for patient \"ben\"allergies",
+    "Concerns": [
+      "Wellness","concern2"
+    ],
+    "Color": "white",
+    "WeightTakenDate": "2017-03-27",
+    "HasCareClubMembership": true,
+    "DateOfBirth": "2015-01-10"
+  },
+  "Client": {
+    "ClientId": 1420876,
+    "FirstName": "Doro",
+    "LastName": "Christina",
+    "Title": 0,
+    "CompanyName": "C"
+  },
+  "Visit": {
+    "VisitId": 0,
+    "AppointmentType": "In",
+    "Location": "Loc1",
+    "VisitTypeIDs": [
+      0
+    ],
+    "PrimaryResourceId": "Dr. John Smith",
+    "NumberOfDays": 2,
+    "CheckinDate": "2017-03-27T23:55:30.428Z",
+    "VisitInvoiceItems": [
+      {
+        "InvoiceItemId": 0,
+        "PLNo": 0,
+        "SeqNo": 0,
+        "CompletionStatus": 0
+      }
+    ]
+  }
+}
+ ]}

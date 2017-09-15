@@ -1,0 +1,233 @@
+<app-whiteboard-filter (timerControl)="timerControl($event)"> </app-whiteboard-filter>
+<div class="row scheduler-outer">
+  <div class="displaytable whiteboard_top_header">
+    <div class="displaytablecell filter onepxline">
+
+      <!--<button class="ui basic button">
+                <i class="icon user"></i>
+            </button>-->
+    </div>
+    <div class="displaytablecell notsch-top tenpxline"></div>
+    <div class="displaytablecell date">
+      <div class="displaytable patientimage">
+        <div class="displaytablecell pull-right">
+          <button class="ui icon button zeropadding arrow left" (click)="dateChanger('prev')"></button>
+        </div>
+        <div class="displaytablecell datetxt">
+          {{displayDate | TimeFormatWhiteboard}}
+        </div>
+        <div class="displaytablecell pull-left">
+          <button class="ui icon button zeropadding arrow right" (click)="dateChanger('next')"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="whiteboard">
+
+    <wj-flex-grid [itemsSource]="gridSource" headersVisibility="Column" [allowResizing]="'None'" [frozenColumns]="1" #flex2 [style.width.%]="100"
+      [style.height.px]="120" scrollMode="auto">
+      <wj-flex-grid-filter></wj-flex-grid-filter>
+      <wj-flex-grid-column #filterdiv [allowSorting]="true" showSort="true" [isReadOnly]="true" [width]="585">
+        <!--[header]="'Patient Details'"-->
+        <ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'">
+          <div class="displaytable">
+            <div class="displaytablecell whiteboard_header">
+              <!--Patient Details-->
+            </div>
+            <div class="displaytablecell notsch ">
+              Not Scheduled
+            </div>
+          </div>
+        </ng-template>
+        <ng-template wjFlexGridCellTemplate let-item="item" [cellType]="'Cell'" let-cell="cell">
+          <div class="patient_item" [ngClass]="(item.Patient.HourlyTasks===null)?'deactivate':'enabled'" (click)="setPassedData(item.Patient,item.VisitId, 0)">
+            <div class="cell img">
+
+              <div id="whiteboard-pet-species" class="pet-species-image" [ngClass]="{'dog' : item?.Patient.SpeciesId === 1,
+                            'cat' : item?.Patient.SpeciesId === 2 ,
+                            'unknow' : (item?.Patient.SpeciesId !== 1 && item?.Patient.SpeciesId !== 2)}">
+                <img [src]="getphotoUrl(item.Patient.PatientId) | secure" class="pet-img whiteboard_circle" alt="" onError="this.onerror=null;this.src='assets/images/dummy.png'"
+                />
+              </div>
+
+              <div id="whiteboard-pet-gender" class="pet-gender-border" [ngClass]="{'male' : item?.Patient.Sex === 1,
+                            'female' : item?.Patient.Sex == 2 ,
+                            'unknow' : (item?.Patient.Sex !== 1 && item?.Patient.Sex !== 2)}">
+              </div>
+
+              <!--<div class="critical" *ngIf="item.Patient.isCritical===true">Critical</div>-->
+              <!--<div class="ribbon" *ngIf="item.Patient.IsCritical"><span>Critical</span></div>-->
+              <div class="cirtical_alert" *ngIf="item?.Patient.IsCritical"> !</div>
+            </div>
+            <div class="cell ">
+              <ul>
+                <li class="client_name">
+                  <div>{{cell.item.Patient.PetName}} <span>{{cell.item.Client.LastName}}</span></div>
+                  <span class="ui circular red  labels pull-right" *ngIf="item.Patient.TaskOverdueCount  != 0">
+              <div class="ui label" suiPopup [popupTemplate]="smallpopupTemplate" popupTrigger="hover"
+              (mouseover)="popuptext='Number of overdue tasks.'" >{{item.Patient.TaskOverdueCount}}</div>
+                                      </span>
+                </li>
+                <li class="dr_name cellinfo" *ngIf="item.Visit.DisplayResourceNameWithDepartment != null">
+                  <span class="txt" suiPopup [popupTemplate]="smallpopupTemplate" popupTrigger="hover" (mouseover)="popuptext=item.Visit.FullResourceNameWithDepartment">{{item.Visit.DisplayResourceNameWithDepartment}}</span>
+                </li>
+
+                <li class="location cellinfo" *ngIf="item.Visit.Location != null">
+                  <span class="txt">{{ item.Visit.Cage? item.Visit.Cage : item.Visit.Location}}</span>
+                </li>
+
+                <li class="wellness cellinfo" *ngIf="item.Visit.AppointmentReason != null">
+                  <span class="txt" suiPopup [popupTemplate]="smallpopupTemplate" popupTrigger="manual" #popup="suiPopup" (mouseover)="openPopup(popup,cell.item.Visit.AppointmentReason)"
+                    (mouseout)="popup.close();">{{cell.item.Visit.AppointmentReason | truncate : 50}}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="cell notsch" id="whiteboard">
+              <ul *ngIf="item.Patient?.TaskNotScheduledCount != 0" class="occurence1">
+                <li class="wb_notsch">
+                  <div class="count">{{item.Patient?.TaskNotScheduledCount}}</div>
+                </li>
+              </ul>
+            </div>
+            <!--<img [src]="getphotoUrl(item.Patient.PatientId) | secure" class="pet-img circle" alt="">
+                        <div >{{cell.item.Patient.PetName}}</div>
+                        <div  *ngIf="<item class="Patient"></item>.Alert != null">{{cell.item.Patient.Alert | truncate : 15}} </div>
+                        <div >Client Name:{{cell.item.Client.FirstName}}</div>
+                        <div >Location: {{cell.item.Visit.Location}}</div>
+                        <div >OverdueCount: {{item.Patient.TaskOverdueCount}}</div>-->
+
+          </div>
+
+
+        </ng-template>
+      </wj-flex-grid-column>
+
+
+
+
+
+      <wj-flex-grid-column [isReadOnly]="true" *ngFor="let time of TimeArray;let i= index" [width]="116">
+        <!--[header]="time" -->
+        <ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'">
+          <div class="currentTime" *ngIf="time==currentHour&&isDisplayTimeBar">
+            {{timeBarCurrentTime}}
+          </div>
+          <div class="time" *ngIf="time!==currentHour">
+            {{shortTime(time)}}
+          </div>
+          <div class="time" *ngIf="time==currentHour&&!isDisplayTimeBar">
+            {{shortTime(time)}}
+          </div>
+        </ng-template>
+        <ng-template wjFlexGridCellTemplate let-item="item" [cellType]="'Cell'" let-cell="cell">
+          <div *ngIf="isDisplayTimeBar && time==currentHour" [style.left.px]="timeBarLeft" class="timebarLine">&nbsp;</div>
+          <div [style.height.px]="defaultRowHeight" (click)="setPassedData(item.Patient,item.VisitId, i)" class="dummyClick" style="cursor:pointer"
+          suiPopup [popupTemplate]="gridTemplate" [popupTransitionDuration]="200" popupPlacement="right" popupTrigger="hover"
+          #gridtooltip="suiPopup" [popupDelay]="300" (mouseover)="suiOccurenceToolTip(item.Patient,time,gridtooltip)" (mouseout)="closeGridPopup(gridtooltip)">
+
+            <div class="no-data" *ngIf="item.Patient.HourlyTasks === null">
+            </div>
+            <!-- <div class="no-data" *ngIf="(((isFuture) && (!isDisplayTimeBar)) || (isDisplayTimeBar && i < timeBarCellPosition) ) && item.Patient.HourlyTasks && item.Patient.HourlyTasks.length > 0 && isNoData(item.Patient.HourlyTasks, time)">
+            </div> -->
+            <div *ngFor="let collection of item.Patient.HourlyTasks;let index =index">
+
+              <div count="time" *ngIf="item.Patient.HourlyTasks[index].Hour == time ">
+                <ul class="occurence{{getStatusCount(item.Patient.HourlyTasks[index])}}">
+                  <li *ngIf="item.Patient.HourlyTasks[index].OverdueCount != 0" class="wb_overdue" [ngClass]="( (isFuture && !isDisplayTimeBar) || (isDisplayTimeBar && i >= timeBarCellPosition)) ? '' : 'pastTasks'">
+                    <!--<i class="fa fa-cck-o icon_occ1" aria-hidden="true"></i>-->
+                    <span class="icon_occ1 tIcon overdue"></span>
+                    <div class="count">{{item.Patient.HourlyTasks[index].OverdueCount}}</div>
+                  </li>
+                  <li *ngIf="item.Patient.HourlyTasks[index].DueCount != 0" class="wb_duenow" [ngClass]="( (isFuture && !isDisplayTimeBar) || (isDisplayTimeBar && i >= timeBarCellPosition)) ? '' : 'pastTasks'">
+                    <!--<i class="fa fa-hourglass-half icon_occ1" aria-hidden="true"></i>-->
+                    <span class="icon_occ1 tIcon duenow"></span>
+                    <div class="count">{{item.Patient.HourlyTasks[index].DueCount}}</div>
+                  </li>
+                  <li *ngIf="item.Patient.HourlyTasks[index].ScheduledCount != 0" class="wb_planned" [ngClass]="( (isFuture && !isDisplayTimeBar) || (isDisplayTimeBar && i >= timeBarCellPosition)) ? '' : 'pastTasks'">
+                    <!--<i class="fa fa-file-text-o icon_occ1" aria-hidden="true"></i>-->
+                    <span class="icon_occ1 tIcon scheduled"></span>
+                    <div class="count">{{item.Patient.HourlyTasks[index].ScheduledCount}}</div>
+                  </li>
+                  <li *ngIf="item.Patient.HourlyTasks[index].CompletedCount != 0" class="wb_completed" [ngClass]="( (isFuture && !isDisplayTimeBar) || (isDisplayTimeBar && i >= timeBarCellPosition)) ? '' : 'pastTasks'">
+                    <!--<i class="fa fa-check icon_occ1" aria-hidden="true"></i>-->
+                    <span class="icon_occ1 tIcon completed"></span>
+                    <div class="count">{{item.Patient.HourlyTasks[index].CompletedCount}}</div>
+                  </li>
+                  <li *ngIf="item.Patient.HourlyTasks[index].SkippedCount != 0 && getStatusCount(item.Patient.HourlyTasks[index]) < 5" class="wb_skipped"
+                    [ngClass]="( (isFuture && !isDisplayTimeBar) || (isDisplayTimeBar && i >= timeBarCellPosition)) ? '' : 'pastTasks'">
+                    <!--<i class="fa fa-times icon_occ1" aria-hidden="true"></i>-->
+                    <span class="icon_occ1 tIcon skipped"></span>
+                    <div class="count">{{item.Patient.HourlyTasks[index].SkippedCount}}</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </wj-flex-grid-column>
+    </wj-flex-grid>
+
+
+    <!--<div class="col-md-2 pull-right">
+            <div class="ui legendlabel">
+                <div class="ui label white">
+                    <i class=""></i> Last Refreshed: {{timerExceuteTime}}
+                </div>
+            </div>
+        </div>-->
+
+
+
+    <div class="legend-pagenation ">
+
+      <div class="displaytable">
+        <div class="displaytablecell whiteboard lengendcell">
+          <ul class="legend">
+            <li>
+              <div class="legend-square overdue"></div><span class="lengendcelltxt">Overdue</span>
+            </li>
+            <li>
+              <div class="legend-square complete"></div><span class="lengendcelltxt">Completed</span>
+            </li>
+            <li>
+              <div class="legend-square duenow"></div><span class="lengendcelltxt">Due now</span>
+            </li>
+            <li>
+              <div class="legend-square skipped"></div><span class="lengendcelltxt">Canceled/Skipped</span>
+            </li>
+            <li>
+              <div class="legend-square planned"></div><span class="lengendcelltxt">Scheduled</span>
+            </li>
+
+          </ul>
+        </div>
+        <div class="displaytablecell">
+          <span class="lengendcelltxt refresh midText padding-l-20">{{appVersionNumber}}</span>
+        </div>
+        <div class="displaytablecell">
+
+          <div class="pull-right">
+            <span class="lengendcelltxt refresh midText">
+                            Current as of: <strong>{{timerExceuteTime}}</strong>
+                        </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template let-popup #smallpopupTemplate>
+    <div class="toottip-content">{{popuptext}}
+    </div>
+  </ng-template>
+
+  <ng-template let-popup #gridTemplate>
+    <div class="ui segments megaTooltip">
+      <div class="ui segment tooltip" *ngFor="let tooltip of tooltipArray">
+        <div class="occurence_border" [ngClass]="tooltip.Status"></div>
+        <div class='time'>{{tooltip.Time}}</div>
+        <div class='description'>{{tooltip.Name}} </div>
+        <div *ngIf="tooltip.TimeSensitive!==''">Time Sensitive</div>
+      </div>
+    </div>
+  </ng-template>

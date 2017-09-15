@@ -1,0 +1,20 @@
+<svg class="nc-icon" xmlns="http://www.w3.org/2000/svg">
+    <g>
+    <path fill="#386da6"  d="M2,2H7V7H2Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M2,9H7v5H2Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M9,2h5V7H9Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M9,9h5v5H9Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M16,2h5V7H16Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M16,9h5v5H16Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M23,2h5V7H23Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M23,9h5v5H23Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M2,16H7v5H2Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M9,16h5v5H9Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M16,16h5v5H16Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M23,16h5v5H23Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M2,23H7v5H2Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M9,23h5v5H9Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M16,23h5v5H16Z" transform="translate(-2 -2)"/>
+    <path fill="#386da6" d="M23,23h5v5H23Z" transform="translate(-2 -2)"/>
+    </g>
+</svg>

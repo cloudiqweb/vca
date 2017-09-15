@@ -1,0 +1,118 @@
+<!--<div class="row">
+    <patient></patient>
+</div>-->
+<div class="row scheduler-outer">
+    <div id="timelinegrid" class="timeline-grid">
+        <wj-flex-grid  #flex [selectionMode]="'None'" [itemsSource]="tasks" headersVisibility="Column" [allowResizing]="'None'" (window:resize)="onResize($event)"
+        (updatedLayout)="updatedView(flex,$event)" [style.width.%]="100" [style.height.px]="height"
+        (sortedColumn)="onSortingColumns($event)" >
+            <wj-flex-grid-filter #filter [filterColumns]="['Category', 'Status']" [defaultFilterType]="'Value'" (filterChanged)="onFilterChange()"></wj-flex-grid-filter>
+            <wj-flex-grid-column [binding]="'Day'" [isReadOnly]="true" [visible]="false" width="0.5*">
+                <ng-template wjFlexGridCellTemplate [cellType]="'GroupHeader'" let-item="item" let-cell="cell">
+                    <div class="text-left">{{item.name}}</div>
+                </ng-template>
+            </wj-flex-grid-column>
+
+            <wj-flex-grid-column [binding]="'ScheduledTime'" [isReadOnly]="true" [width]="135" [allowSorting]="true" showSort="true" [header]="'Scheduled'">
+                <!-- [header]="'Schedule'" -->
+                <!--<ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'" let-item="item" let-cell="cell">
+                    <div >
+                        Scheduled
+                    </div>
+                </ng-template>-->
+                <ng-template wjFlexGridCellTemplate [autoSizeRows]="false" [cellType]="'Cell'" let-item="item">
+                    <div class="v-transform center">
+                        <ng-container *ngIf="item.ScheduledTime && item.StatusSetDate && item.StatusSetDate.slice(0,10) !== item.ScheduledTime.slice(0,10)">
+                            {{item.ScheduledTime | timelineFormatDate}}
+                        </ng-container>
+                        <ng-container *ngIf="item.ScheduledTime != null">
+                            {{item.ScheduledTime | timelineTimeFmt}}
+                        </ng-container>
+                    </div>
+                </ng-template>
+            </wj-flex-grid-column>
+            <wj-flex-grid-column [binding]="'StatusSetDate'" [isReadOnly]="true" [width]="95" [allowSorting]="true" showSort="true" [header]="'Completed'">
+                <!-- [header]="'Time'" -->
+                <!--<ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'" let-item="item" let-cell="cell">
+                    <div >
+                        Completed
+                    </div>
+                </ng-template>-->
+                <ng-template wjFlexGridCellTemplate [autoSizeRows]="false" [cellType]="'Cell'" let-item="item">
+                    <div class="v-transform center">{{item.StatusSetDate | timelineTimeFmt}}</div>
+                </ng-template>
+            </wj-flex-grid-column>
+            <wj-flex-grid-column [header]="'Type'" [binding]="'Category'" [width]="120" [isReadOnly]="true" [allowSorting]="false">
+                <ng-template wjFlexGridCellTemplate [autoSizeRows]="false" [cellType]="'ColumnHeader'" let-item="item" let-cell="cell">
+                    <div class="cellLabel">Type
+                    </div>
+                </ng-template>
+                <ng-template wjFlexGridCellTemplate [autoSizeRows]="false" [cellType]="'Cell'" let-item="item">
+                    <div class="v-transform center {{categoryImages[item.Category]}}">
+                       
+                    </div>
+                </ng-template>
+            </wj-flex-grid-column>
+            <wj-flex-grid-column [binding]="'Comment'" width="2*" [isReadOnly]="true" [allowSorting]="false" [wordWrap]="true" [header]="'Details'">
+                <!-- [header]="'Details'" -->
+                <!--<ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'" let-item="item" let-cell="cell">
+                    <div>
+                        Details
+                    </div>
+                </ng-template>-->
+
+                <ng-template wjFlexGridCellTemplate [autoSizeRows]="false" [cellType]="'Cell'" let-item="item">
+                    <div class="v-transform left gridwrap" innerHtml="{{item | detailsFmt }}">
+                    </div>
+                </ng-template>
+            </wj-flex-grid-column>
+            <wj-flex-grid-column [header]="'Status'" [binding]="'Status'" [width]="120" [isReadOnly]="true" [allowSorting]="false">
+                <ng-template wjFlexGridCellTemplate [autoSizeRows]="false" [cellType]="'ColumnHeader'" let-item="item" let-cell="cell">
+                    <div class="cellLabel">Status
+                    </div>
+                </ng-template>
+                <ng-template wjFlexGridCellTemplate [autoSizeRows]="false" [cellType]="'Cell'" let-item="item">
+                    <div class="v-transform leftnocolor {{item.Status}}-txt">{{item.Status === 'Care Notes' ? "" : item.Status}}</div>
+                </ng-template>
+            </wj-flex-grid-column>
+            <wj-flex-grid-column [binding]="'StatusSetBy'" [isReadOnly]="true" [allowSorting]="false" [width]="225" [header]="'Staff'">
+                <!-- [header]="'Staff'" -->
+                <!--<ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'" let-item="item" let-cell="cell">
+
+                    <div>
+                        Staff
+                    </div>
+                </ng-template>-->
+                <ng-template wjFlexGridCellTemplate [autoSizeRows]="false" [cellType]="'Cell'" let-item="item">
+                    <div class="v-transform leftnocolor {{item.Status}}-txt">{{this.globalService.nameFormat(item.StatusSetBy)}}</div>
+                </ng-template>
+            </wj-flex-grid-column>
+        </wj-flex-grid>
+        <div class="legend-pagenation ">
+
+            <div class="displaytable">
+
+                <div class="displaytablecell">
+                    <span class="lengendcelltxt refresh midText padding-l-20">{{appVersionNumber}}</span>
+                </div>
+                <div class="displaytablecell ">
+
+                    <div class="pull-right">
+                        <span class="lengendcelltxt refresh midText">
+                            <span > Last refreshed: <strong>{{timerExceuteTime}}</strong></span>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

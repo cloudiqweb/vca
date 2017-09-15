@@ -1,0 +1,282 @@
+<div *ngIf="showAppointments">
+    <div class="ui error message" *ngIf="dataSvc.validationMessage !== ''">
+        <p>{{dataSvc.validationMessage}}</p>
+    </div>
+    <div class="">
+        <div class="ui form">
+            <div class="inline fields" *ngIf="dataSvc.taskScheduleInfo.TaskDefinition.BillingTypeId === 3">
+                <div class="four wide field">
+                    <label class="left-indent-18px">Name</label>
+                </div>
+                <div *ngIf="dataSvc.taskScheduleInfo.VisitInvoiceItemDetails" class="twelve wide field">
+                    <div>{{dataSvc.taskScheduleInfo.VisitInvoiceItemDetails[0].Name}}</div>
+                    <div class="appointmentBoard">
+                        <label>Quantity:</label>
+                        <span>{{dataSvc.taskScheduleInfo.VisitInvoiceItemDetails[0].Qty}}</span>
+                        <span>{{dataSvc.taskScheduleInfo.VisitInvoiceItemDetails[0].Unit}}</span>
+                    </div>
+                </div>
+            </div>
+            <br *ngIf="dataSvc.taskScheduleInfo.TaskDefinition.BillingTypeId === 3" />
+            <lsu-accordion ngDefaultControl [option]="accordOption">
+                <lsu-accordionPanel ngDefaultControl [title]="panel.title" [active]="true" *ngFor="let panel of panels;" id="accordion_title">
+                    <div *ngIf="panel.content==='SummaryInfo'">
+                        <div class="ui form">
+                            <!--Frequency-->
+                            <div class="row bottom-margin-15px">
+                                <div class="col-md-12">
+                                    <div class="customform">
+                                        <div class="text">Frequency</div><span class="requiredAsterisk">*</span>
+                                        <div class="control">
+                                            <div class="switch-toggle switch-candy type2">
+                                                <input id="once" type="radio" [value]="true" (change)="loadSummaryInformation();" [disabled]="isOnceDisabled" [(ngModel)]="isOnceSelected" name="frequency">
+                                                <label for="once" onclick="">Once</label>
+
+                                                <input id="recurring" type="radio" [value]="false" (change)="loadSummaryInformation();" [disabled]="isOnceDisabled" [(ngModel)]="isOnceSelected" name="frequency">
+                                                <label for="recurring" onclick="">Recurring</label>
+
+                                                <a></a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Start time-->
+                            <div class="row bottom-margin-15px">
+                                <div class="col-md-3">
+                                    <div class="customform">
+                                        <div class="text">
+                                            <ng-container *ngIf="isOnceSelected">Time</ng-container>
+                                            <ng-container *ngIf="!isOnceSelected">Start time</ng-container>
+                                        </div>
+                                        <span class="requiredAsterisk">*</span>
+                                        <div class="control">
+                                            <input #startTime class="custominput" [ngClass]="{'mandatory': dataSvc.taskScheduleInfo.StartTimeInput === ''}" type="text" placeholder="00:00" (change)="loadSummaryInformation('startTime', startTime);" [(ngModel)]="dataSvc.taskScheduleInfo.StartTimeInput">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="customform">
+                                        <div class="text">
+                                            <ng-container *ngIf="isOnceSelected">Date</ng-container>
+                                            <ng-container *ngIf="!isOnceSelected">Start date</ng-container>
+                                        </div><span class="requiredAsterisk">*</span>
+                                        <div class="control" *ngIf="globalsService.numberOfDays > 7">
+                                            <input class="custominput" [ngClass]="{'mandatory': dataSvc.taskScheduleInfo.StartDate === ''}" type="date" (change)="loadSummaryInformation();" [(ngModel)]="dataSvc.taskScheduleInfo.StartDate">
+                                        </div>
+                                        <div class="control" *ngIf="globalsService.numberOfDays <= 7">
+                                            <ng-container *ngIf="!globalsService.isNewDropDownChanges">
+                                                <lsu-dropdown ngDefaultControl class="width100" (ngModelChange)="loadSummaryInformation('startDate', $event);" [(ngModel)]="dataSvc.taskScheduleInfo.StartDateValue" name="{{'startDates_' + i}}" [textField]="'dateString'" [value]="'date'" [data]="globalsService.visitDates"
+                                                    [placeHolder]="'Select a Date'">
+                                                </lsu-dropdown>
+                                            </ng-container>
+                                            <ng-container *ngIf="globalsService.isNewDropDownChanges">
+                                                <sui-select class="selection width100" placeholder="Select a Date" [(ngModel)]="dataSvc.taskScheduleInfo.StartDateValue" (ngModelChange)="loadSummaryInformation('startDate', $event);" name="{{'startDates_' + i}}" labelField="dateString" [options]="globalsService.visitDates"
+                                                    #select>
+                                                    <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
+                                                    </sui-select-option>
+                                                </sui-select>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5" *ngIf="!isOnceSelected">
+                                    <div class="customform">
+                                        <div class="text">Repeat every</div><span class="requiredAsterisk">*</span>
+                                        <div class="control">
+                                            <input type="number" placeholder="0"  (keypress)="validateNumber($event)" step="1" min="1" class="custominput type1 pull-left" [ngClass]="{'mandatory': dataSvc.taskScheduleInfo.Interval === null}" (change)="loadSummaryInformation();" [(ngModel)]="dataSvc.taskScheduleInfo.Interval">
+                                        </div>
+                                        <div class="switch-candy-wrap">
+                                            <div class="switch-toggle switch-candy">
+                                                <input id="hrs" name="view" type="radio" [(ngModel)]="dataSvc.taskScheduleInfo.IntervalTimeUnit" value="Hours">
+                                                <label for="hrs" (click)="setRepeatType('Hours')">hours</label>
+
+                                                <input id="min" name="view" type="radio" [(ngModel)]="dataSvc.taskScheduleInfo.IntervalTimeUnit" value="Minutes">
+                                                <label for="min" (click)="setRepeatType('Minutes')">minutes</label>
+                                                <a></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--End time-->
+                            <div class="row bottom-margin-15px" *ngIf="!isOnceSelected">
+                                <div class="col-md-3">
+                                    <div class="customform">
+                                        <div class="text">End time</div><span class="requiredAsterisk">*</span>
+                                        <div class="control">
+                                            <input #endTime class="custominput" placeholder="00:00"  [ngClass]="{'mandatory': dataSvc.taskScheduleInfo.EndTimeInput === ''}" [disabled]="dataSvc.taskScheduleInfo.EndsAtCheckout" type="text" (change)="loadSummaryInformation('endTime', endTime);" [(ngModel)]="dataSvc.taskScheduleInfo.EndTimeInput">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="customform">
+                                        <div class="text">End date</div><span class="requiredAsterisk">*</span>
+                                        <div class="control" *ngIf="globalsService.numberOfDays > 7">
+                                            <input class="custominput" [ngClass]="{'mandatory': dataSvc.taskScheduleInfo.EndDate === ''}" [disabled]="dataSvc.taskScheduleInfo.EndsAtCheckout" type="date" (change)="loadSummaryInformation();" [(ngModel)]="dataSvc.taskScheduleInfo.EndDate">
+                                        </div>
+                                        <div class="control" *ngIf="globalsService.numberOfDays <= 7">
+                                            <ng-container *ngIf="!globalsService.isNewDropDownChanges">
+                                                <lsu-dropdown ngDefaultControl [disabled]="dataSvc.taskScheduleInfo.EndsAtCheckout" class="width100" (ngModelChange)="loadSummaryInformation('endDate', $event);" [(ngModel)]="dataSvc.taskScheduleInfo.EndDateValue" name="{{'endDates_' + i}}" [textField]="'dateString'"
+                                                    [value]="'date'" [data]="globalsService.visitDates" [placeHolder]="'Select a Date'">
+                                                </lsu-dropdown>
+                                            </ng-container>
+                                            <ng-container *ngIf="globalsService.isNewDropDownChanges">
+                                                <sui-select class="selection width100" [isDisabled]="dataSvc.taskScheduleInfo.EndsAtCheckout" placeholder="Select a Date" [(ngModel)]="dataSvc.taskScheduleInfo.EndDateValue" (ngModelChange)="loadSummaryInformation('endDate', $event);" name="{{'endDates_' + i}}"
+                                                    labelField="dateString" [options]="globalsService.visitDates" #select>
+                                                    <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
+                                                    </sui-select-option>
+                                                </sui-select>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--End time at checkout-->
+                            <div class="row bottom-margin-15px" *ngIf="!isOnceSelected">
+                                <div class="col-md-12">
+                                    <div class="ui checkbox-right">
+                                        <input id="checkout" [disabled]="dataSvc.taskScheduleInfo.TaskDefinition.BillingTypeId !== 1" type="checkbox" name="endsOn" [value]="true" (change)="loadSummaryInformation();" [(ngModel)]="dataSvc.taskScheduleInfo.EndsAtCheckout">
+                                        <label for="checkout">End time at checkout</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Instructions-->
+                            <div class="row bottom-margin-15px">
+                                <div class="col-md-12">
+                                    <div class="customform">
+                                        <div class="text">Instructions</div>
+                                        <div>
+                                            <!--<textarea class="textarea" cols="30" rows="3" placeholder="Add instructions here." [(ngModel)]="dataSvc.taskScheduleInfo.Instructions"></textarea>-->
+                                            <textarea class="textarea" cols="30" rows="2" placeholder="Add instructions here." [(ngModel)]="dataSvc.taskScheduleInfo.Instructions" (input)="loadSummaryInformation()" (change)="loadSummaryInformation()">
+                                                </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Time sensitive-->
+                            <div class="row bottom-margin-15px">
+                                <div class="col-md-12">
+                                    <div class="ui checkbox-right pull-left">
+                                        <input id="Overdue" type="checkbox" ngDefaultControl name="isTimeSensitive" [disabled]="false" [(ngModel)]="dataSvc.taskScheduleInfo.IsTimeSensitive" (change)="loadSummaryInformation()" />
+                                        <label for="Overdue">Time sensitive</label>
+                                    </div>
+                                    <span>Overdue alert appears after {{globalsService.TimeSensitiveTaskDueInMinutes}} minutes (vs. {{globalsService.TimeInsensitiveTaskDueInMinutes}} minutes)</span>
+                                </div>
+                            </div>
+
+                            <!-- Start on -->
+                            <!--<div class="field1">
+
+
+
+                                <div class="inline fields">
+                                    <div class="four wide field">
+                                        <label class="left-indent-40px">
+                                            <ng-container *ngIf="isOnceSelected">
+                                                 Time
+                                            </ng-container>
+                                            <ng-container *ngIf="!isOnceSelected">
+                                                Start time
+                                            </ng-container>
+                                         </label>
+                                    </div>
+                                    <div class="four wide field" >
+                                        <input class="custominput" type="time" (change)="loadSummaryInformation();" [(ngModel)]="dataSvc.taskScheduleInfo.StartTimeInput">
+                                    </div>
+                                    <div class="five wide field">
+                                        <input class="custominput" type="date" (change)="loadSummaryInformation('startDate');" [(ngModel)]="dataSvc.taskScheduleInfo.StartDate">
+                                    </div>
+                                </div>-->
+
+                            <!--<div class="inline fields" *ngIf="!isOnceSelected">
+                                    <div class="four wide field">
+                                        <label></label>
+                                    </div>
+                                    <div class="three wide field">
+                                        <label>Repeat every</label>
+                                    </div>
+                                    <div class="two wide field">
+                                        <input type="number" (keypress)="validateNumber($event)" step="1" min="1" class="custominput" (change)="loadSummaryInformation();" [(ngModel)]="dataSvc.taskScheduleInfo.Interval">
+                                    </div>
+
+                                    <div class="four wide field">
+
+                                    </div>
+                                </div>-->
+
+
+                            <!--<div class="inline fields" *ngIf="!isOnceSelected">
+                                    <div class="four wide field">
+                                        <label class="left-indent-40px">End time</label>
+                                    </div>
+                                    <div class="two wide field" >
+                                        <div class="">
+                                            <div class="ui radio checkbox">
+                                                <input id="at" type="radio" name="endsOn" [value]="0" (change)="loadSummaryInformation();" [(ngModel)]="dataSvc.taskScheduleInfo.EndsAtCheckout">
+                                                <label for="at">At</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="four wide field">
+                                        <input class="custominput" [disabled]="dataSvc.taskScheduleInfo.EndsAtCheckout" type="time" (change)="loadSummaryInformation();" [(ngModel)]="dataSvc.taskScheduleInfo.EndTimeInput">
+                                    </div>
+                                    <div class="five wide field">
+                                        <input class="custominput" [disabled]="dataSvc.taskScheduleInfo.EndsAtCheckout" type="date" (change)="loadSummaryInformation('endDate');" [(ngModel)]="dataSvc.taskScheduleInfo.EndDate">
+                                    </div>
+                                </div>-->
+
+                            <!-- On -->
+                            <!--<div class="inline fields" *ngIf="!isOnceSelected">
+                                    <div class="four wide field">
+                                        <label></label>
+                                    </div>
+                                    <div class="twelve wide field" >
+                                        <div class="">
+                                            <div class="ui radio checkbox">
+                                                <input id="checkout" [disabled]="dataSvc.taskScheduleInfo.TaskDefinition.BillingTypeId !== 1" type="radio" name="endsOn" [value]="true" (change)="loadSummaryInformation();" [(ngModel)]="dataSvc.taskScheduleInfo.EndsAtCheckout">
+                                                <label for="checkout">At checkout</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </lsu-accordionPanel>
+                <lsu-accordionPanel ngDefaultControl [title]="panel.title" [active]="false" *ngFor="let panel of dataPanel;" id="accordion_title">
+                    <div *ngIf="panel.content==='Data'">
+                        <div>
+                            <div *ngIf="dataSvc.taskScheduleInfo.TaskSeriesObservations === null">
+                                No data to collect
+                            </div>
+                            <div class="data-container" *ngIf="dataSvc.taskScheduleInfo !== undefined">
+                                <div class="row bottom-margin-15px" *ngFor="let item of dataSvc.taskScheduleInfo.TaskSeriesObservations; let i = index;">
+                                    <div class="col-md-5 ui checkbox">
+                                        <!-- <lsu-checkbox ngDefaultControl [(ngModel)]="item.IsVisible" (click)="dataPanelText();refreshDataPanel()" name="appointments" [disabled]="false" [type]="'checkbox'" [label]="item.Name">
+                                        </lsu-checkbox> -->
+                                        <input id="taskSeriesObservations_{{item.TaskSeriesObservationId}}" [disabled]="false" type="checkbox" name="appointments" [value]="item.IsVisible" (change)="dataPanelText();refreshDataPanel()" [(ngModel)]="item.IsVisible">
+                                        <label for="taskSeriesObservations_{{item.TaskSeriesObservationId}}">{{item.Name}}</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="pull-right">Notify If</div>
+                                    </div>
+                                    <div class="col-md-5 bootfix margin-left-15">
+                                        <div>
+                                            <textarea class="textarea" maxlength="90" cols="30" rows="1" [(ngModel)]="item.NotifyText"  [placeholder]="'Enter'" (keydown)="loadSummaryInformation()" (change)="loadSummaryInformation() "></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </lsu-accordionPanel>
+            </lsu-accordion>
+        </div>
+    </div>

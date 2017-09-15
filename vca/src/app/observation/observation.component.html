@@ -1,0 +1,72 @@
+<!--<div class="row">
+    <patient></patient>
+</div>-->
+<div class="row">
+    <div id="observation">
+        <wj-flex-grid #flex [selectionMode]="'None'" [frozenColumns]="2" [itemsSource]="gridSource" headersVisibility="Column" [allowResizing]="'None'" (updatedLayout)="setColumnHeaderGrouping()" [allowMerging]="2" (window:resize)="onResize($event)" [style.width.%]="100">
+            <wj-flex-grid-column [binding]="'time.Day'" [isReadOnly]="true" cssClass="v-center" [visible]="false" width="0.5*">
+                <ng-template wjFlexGridCellTemplate [cellType]="'GroupHeader'" let-item="item" let-cell="cell">
+                    <div class="visitDate"> {{ (item.name) }}</div>
+                </ng-template>
+            </wj-flex-grid-column>
+            <wj-flex-grid-column [isReadOnly]="true" [width]="150">
+                <ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'">
+                    Observation <br> Time
+                </ng-template>
+                <ng-template wjFlexGridCellTemplate let-item="item" [cellType]="'Cell'" let-cell="cell">
+                    {{item.time.StatusSetDate | timelineTimeFmt}}
+                </ng-template>
+            </wj-flex-grid-column>
+            <wj-flex-grid-column [isReadOnly]="true" cssClass="v-center" [header]="observation.ObservationDisplayText" *ngFor="let observation of Observations;let i=index" [width]="observation.width">
+                <ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'" let-cell="cell">
+                    <div class="trendHeader{{cell.row.index}}" *ngIf="cell.row.index===1" (mouseout)="hideGroupToolTip()" (mouseover)="showGroupToolTip($event,getObservationHeaderText(observation, cell.row.index),observation,'TaskName')"> {{getObservationHeaderText(observation, cell.row.index) | truncate:32 }} </div>
+                    <div class="trendHeader{{cell.row.index}}" *ngIf="cell.row.index!==1"> {{getObservationHeaderText(observation, cell.row.index)}} </div>
+                  </ng-template>
+                <ng-template wjFlexGridCellTemplate let-item="item" [cellType]="'Cell'">
+                    <!--<div #tooltip (mouseout)="hideGroupToolTip()" (mouseover)="showGroupToolTip($event,item[observation.ObservationName]?.LongValue, observation,'Observation')">
+                        {{item[observation.ObservationDisplayText]?.ShortValue}}
+                    </div>-->
+                    <div *ngIf="item[observation.ObservationDisplayText]?.Comment!=='' || item[observation.ObservationDisplayText]?.ShortValue!==null">
+
+                        <div>
+
+                            <span [ngClass]="{textBold: !item[observation.ObservationDisplayText]?.IsNormal}" *ngIf="item[observation.ObservationDisplayText]?.ShortValue!==null" (mouseout)="hideGroupToolTip()" (mouseover)="showGroupToolTip($event,item[observation.ObservationDisplayText]?.LongValue, observation,'Observation')">
+                                {{item[observation.ObservationDisplayText]?.ShortValue}}
+                            </span>
+                            <span class="obscategory-icon notes" *ngIf="item[observation.ObservationDisplayText]?.Comment!==''&&item[observation.ObservationDisplayText]?.ShortValue!==null" #tooltip (mouseout)="hideGroupToolTip()" (mouseover)="showGroupToolTip($event,item[observation.ObservationDisplayText]?.Comment, observation,'Comment')">
+                            </span>
+                        </div>
+                    </div>
+                </ng-template>
+            </wj-flex-grid-column>
+        </wj-flex-grid>
+        <div class="legend-pagenation ">
+
+            <div class="displaytable">
+                 <div class="displaytablecell">
+                    <span class="lengendcelltxt refresh midText padding-l-20" >{{appVersionNumber}}</span>
+                </div>
+
+                <div class="displaytablecell text-right">
+
+
+                    <span class="lengendcelltxt refresh midText">
+                           <!-- Current as of: {{timerExceuteTime}} -->
+                           Current as of: <strong>{{timerExceuteTime}}</strong>
+                        </span>
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+</div>

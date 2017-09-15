@@ -1,0 +1,13 @@
+{
+    "Diagnostics":"microscope",
+    "Medications/Procedures":"sistab",
+    "Medication":"sistab",
+    "Medications":"sistab",
+    "Patient Care":"patientCare",
+    "Monitoring":"heartRate",
+    "Communication":"communication",
+    "Procedures":"procedure",
+    "Procedure":"procedure",
+    "Ins and Outs":"inOut",
+    "Care Notes" : "careNote"
+}

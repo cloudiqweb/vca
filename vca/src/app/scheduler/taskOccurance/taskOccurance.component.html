@@ -1,0 +1,363 @@
+<div class="ui">
+    <div class="ui error message" *ngIf="dataSvc.occurrenceValidationMessage !== ''">
+        <p>{{dataSvc.occurrenceValidationMessage}}</p>
+    </div>
+
+    <!--Select task-->
+    <div class="row bottom-margin-15px" *ngIf="occurances && occurances.length > 1">
+        <div class="col-md-3">
+            <div class="pull-right margin-top-10">Select task</div>
+        </div>
+        <div class="col-md-8">
+            <lsu-dropdown class="width100" ngDefaultControl [(ngModel)]="dataSvc.selectedOccurrence" [data]="occurances" [textField]="'DisplayName'" [placeHolder]="'Select an Occurrence'" name="occuranceInfo" (ngModelChange)="loadPatientFindings(dataSvc.selectedOccurrence.TaskOccurrenceId)">
+            </lsu-dropdown>
+        </div>
+    </div>
+    <!--Instructions-->
+    <div class="row bottom-margin-15px">
+        <div class="col-md-3 ">
+            <div class="pull-right">Instructions</div>
+        </div>
+        <div class="col-md-9">
+            <div class="edittask-text"> {{instructions}}</div>
+        </div>
+    </div>
+    <!--Product-->
+    <div class="row bottom-margin-15px vcaeditTask" *ngIf="isQtyMatch">
+        <div class="col-md-3 ">
+            <div class="pull-right margin-top-10">Product</div>
+        </div>
+        <div class="col-md-9">
+            <div class="edittask-text type1">{{this.medicineName}}</div>
+        </div>
+    </div>
+    <div class="row bottom-margin-15px vcaeditTask" *ngIf="isQtyMatch">
+        <div class="col-md-3 ">
+            <div class="pull-right">Quantity</div>
+        </div>
+        <div class="col-md-9">
+            <div class="edittask-text">{{this.dataSvc.specifiedQty}} {{this.specifiedUnit}}</div>
+        </div>
+    </div>
+    <!--Confirm quantity-->
+    <div class="row bottom-margin-15px" *ngIf="isQtyMatch">
+        <div class="col-md-3 ">
+            <div class="pull-right margin-top-10">Confirm quantity</div>
+        </div>
+        <div class="col-md-9">
+            <div class="row formUnit">
+                <div class="col-md-3">
+                    <ng-container *ngIf="this.dataSvc.specifiedQty % 1 === 0">
+                        <input #confirmqty type="number" min="0" [disabled]="dataSvc.initialStatusValue===126" [ngClass]="{'mandatory': this.dataSvc.confirmQty === null&&dataSvc.initialStatusValue!==126}" class="custominput" [(ngModel)]="this.dataSvc.confirmQty" (change)="setReadytoComplete();validateInputs()"
+                            oninput="validity.valid||(value='');" />
+                    </ng-container>
+                    <ng-container *ngIf="this.dataSvc.specifiedQty % 1 !== 0">
+                        <input #confirmqty type="number" min="0" [disabled]="dataSvc.initialStatusValue===126" [ngClass]="{'mandatory': this.dataSvc.confirmQty === null&&dataSvc.initialStatusValue!==126}" class="custominput" [(ngModel)]="this.dataSvc.confirmQty" (change)="setReadytoComplete();validateInputs()"
+                            (paste)="_pasteByType($event, 'Float', this.dataSvc.confirmQty)" (keypress)="_keyPressByType($event, 'Float', this.dataSvc.confirmQty)" />
+                    </ng-container>
+                </div>
+                <div class="col-md-3  ">
+                    <div class="unit-new edittask-text">{{this.specifiedUnit}}</div>
+                </div>
+                <div class="col-md-3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Scheduled time-->
+    <div class="row bottom-margin-15px">
+        <div class="col-md-3 ">
+            <div class="pull-right margin-top-10">Scheduled time</div>
+        </div>
+        <div class="col-md-9 ">
+            <div class="row formUnit">
+                <div class="col-md-3">
+                    <input type="text" class="custominput" placeholder="00:00" (change)="validateInputs('scheduledTime')" [(ngModel)]="dataSvc.scheduledTime" [ngClass]="{'mandatory': dataSvc.scheduledTime  === ''} ">
+                </div>
+                <div class="col-md-4  " *ngIf="globalsService.numberOfDays > 7">
+                    <input type="date" class="custominput" min="2015-01-01" max="2025-12-31"  [ngClass]="{'mandatory': dataSvc.scheduledDate === ''}" (change)="validateInputs('scheduledDate')" [(ngModel)]="dataSvc.scheduledDate">
+                </div>
+                <div class="col-md-5  " *ngIf="globalsService.numberOfDays <= 7">
+                    <ng-container *ngIf="!globalsService.isNewDropDownChanges">
+                        <lsu-dropdown ngDefaultControl claass="width100" [(ngModel)]="dataSvc.scheduledDateValue" (ngModelChange)="validateInputs('scheduledDate')" name="{{'startDates_' + i}}" [textField]="'dateString'" [value]="'date'" [data]="globalsService.visitDates" [placeHolder]="'Select a Date'">
+                        </lsu-dropdown>
+                    </ng-container>
+                    <ng-container *ngIf="globalsService.isNewDropDownChanges">
+                        <sui-select class="selection width100" laceholder="Select a Date" [(ngModel)]="dataSvc.scheduledDateValue" (ngModelChange)="validateInputs('scheduledDate')" name="{{'startDates_' + i}}" labelField="dateString" [options]="globalsService.visitDates" #select>
+                            <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
+                            </sui-select-option>
+                        </sui-select>
+                    </ng-container>
+                </div>
+                <div class="col-md-1">
+                    <div suiPopup [popupTemplate]="popupTemplate" popupTrigger="hover" class="margin-top-10">
+                        <span class="info"></span>
+                    </div>
+                </div>
+                <!-- Tooltip -->
+                <ng-template let-popup #popupTemplate>
+                    <div class="info_tooltip type1">
+                        <div>
+                            <strong> Created by:</strong> <br> {{dataSvc.createdTime}} by {{dataSvc.createdBy}}
+
+                        </div>
+
+                        <div *ngIf="dataSvc.modifiedTime!==''">
+                            <div class="row">
+                                <div class="horizontalline"></div>
+                            </div>
+                            <strong>Modified by:</strong> <br> {{dataSvc.modifiedTime}} by {{dataSvc.modifiedBy}}
+
+                        </div>
+                        <div *ngIf="dataSvc.statusTooltip!==''">
+                            <div class="row">
+                                <div class="horizontalline"></div>
+                            </div>
+                            <strong>{{dataSvc.statusTooltip}} by:</strong><br> {{dataSvc.statusSetTimeTooltip}} by {{dataSvc.statusSetByTooltip}}
+
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!--Finding observation-->
+    <div class="finding-observation row bottom-margin-15px maxscroll" *ngIf="dataSvc.taskOccurances !== null">
+        <div *ngFor="let occurance of dataSvc.taskOccurances; let i = index;" class="col-md-12">
+
+            <div class="row bottom-margin-15px" *ngIf="occurance.AnswerGroup !== null && occurance.AnswerGroupId !== 0">
+                <div class="col-md-3 text-right">
+                    <span class="pull-right margin-top-10 ">
+
+                            {{occurance.AnswerGroup?.GroupName}}
+                            <i class="fa fa-exclamation-triangle notifyicon-color " aria-hidden="true" *ngIf="occurance.NotifyText !== undefined &&
+                            occurance.NotifyText !== '' && occurance.NotifyText !== null"></i>
+                        </span>
+                </div>
+                <div class="col-md-9">
+                    <div class="row formUnit">
+                        <div class="col-md-3">
+
+                            <div *ngIf="occurance.AnswerGroup?.OrdinalAnswerItems.length > 4">
+
+
+
+
+                                <!-- <sui-select class="selection"  placeholder="Select a Item" [(ngModel)]="occurance.selectedAnswerItem"
+                             name="{{'ordinalDropdown_' + i}}" labelField="dateString"
+                            [options]="globalsService.visitDates" #select>
+                            <sui-select-option *ngFor="let option of select.OrdinalAnswerItems" [value]="option">
+                            </sui-select-option>
+                        </sui-select> -->
+
+
+                                <ng-container *ngIf="!globalsService.isNewDropDownChanges">
+                                    <lsu-dropdown ngDefaultControl class="width100" [(ngModel)]="occurance.selectedAnswerItem" name="{{'ordinalDropdown_' + i}}" [data]="occurance.AnswerGroup?.OrdinalAnswerItems" [textField]="'Value'" [placeHolder]="'Select an Item'" [value]="'OrdinalAnswerId'">
+                                    </lsu-dropdown>
+                                </ng-container>
+                                <ng-container *ngIf="globalsService.isNewDropDownChanges">
+                                    <!-- <sui-select class="selection"  placeholder="Select a Item" [(ngModel)]="occurance.selectedAnswerItem"
+                             name="{{'ordinalDropdown_' + i}}" labelField="dateString"
+                            [options]="globalsService.visitDates" #select>
+                            <sui-select-option *ngFor="let option of select.OrdinalAnswerItems" [value]="option">
+                            </sui-select-option>
+                        </sui-select> -->
+                                    <div class="select-defaultStyle">
+                                        <select class="ui dropdown" id="{{'startDates_' + i}}" name="{{'startDates_' + i}}" [(ngModel)]="occurance.selectedAnswerItem">
+                                            <option value="null" disabled selected>Select an Item</option>
+                                            <option *ngFor="let option of occurance.AnswerGroup?.OrdinalAnswerItems" [ngValue]="option">
+                                                {{option.Value}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </ng-container>
+                            </div>
+                            <div *ngIf="occurance.AnswerGroup?.OrdinalAnswerItems.length <= 4">
+                                <div *ngFor="let ordinalInfo of occurance.AnswerGroup?.OrdinalAnswerItems">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" id="{{'ordinalAnswer_' + i}}_{{ordinalInfo.OrdinalAnswerId}}" name="{{'ordinalAnswer_' + i}}" [(ngModel)]="occurance.SelectedValue" [value]="ordinalInfo.Value" [checked]="ordinalInfo.Value == occurance.SelectedValue" />
+                                        <!-- <label for="{{'ordinalAnswer_' + i}}" >{{ordinalInfo.Value}}</label> -->
+                                        <label for="{{'ordinalAnswer_' + i}}_{{ordinalInfo.OrdinalAnswerId}}"><i>{{ordinalInfo.Value}}</i></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="unit">{{occurance.ProperyMeasureUnitAbbreviation}}???</div> -->
+                            <!--<span>{{occurance.ProperyMeasureUnitAbbreviation}}</span>-->
+                        </div>
+                        <!-- Ref range -->
+                        <ng-template let-popup #reftooltip>
+                            <div class="info_tooltip">
+                                <div>{{popuptext}} </div>
+                            </div>
+                        </ng-template>
+                        <div class="col-md-4 reference" *ngIf="(occurance.LOINCScale | lowercase) !== 'nurrative'  && (occurance.LOINCScale | lowercase) !== 'narrative'" >
+                            <div class="margin-top-10" suiPopup [popupTemplate]="reftooltip" popupTrigger="manual" #popup="suiPopup" (mouseover)=" openPopup(popup,'ref',getOrdinalReferenceRange(occurance.AnswerGroup?.OrdinalAnswerItems,0))" (mouseout)="popup.close();" class="margin-top-10">
+                                {{getOrdinalReferenceRange(occurance.AnswerGroup?.OrdinalAnswerItems,0) }}
+                            </div>
+                        </div>
+                        <div class="col-md-5  ">
+                            <textarea class="textarea" cols="30" rows="1" placeholder="Comment" name="{{'comments_' + i}}" [(ngModel)]="occurance.CommentsValue">
+                            </textarea>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="notifymgs ">{{occurance.NotifyText}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottom-margin-15px" *ngIf="occurance.AnswerGroupId === 0 || occurance.AnswerGroupId === null">
+                <div class="col-md-3 ">
+                    <div class="pull-right margin-top-10 right-align">
+                        {{occurance.ObservationName}}<span *ngIf="occurance.ProperyMeasureUnitAbbreviation">({{occurance.ProperyMeasureUnitAbbreviation}})</span>
+                        <i class="fa fa-exclamation-triangle notifyicon-color " aria-hidden="true" *ngIf="occurance.NotifyText !== undefined &&
+                            occurance.NotifyText !== '' && occurance.NotifyText !== null"></i>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row formUnit">
+                        <div class="col-md-3" *ngIf="(occurance.LOINCScale | lowercase)  === 'quantitative'">
+
+                            <div *ngIf="(occurance.LOINCScale | lowercase) === 'quantitative'">
+                                <input type="text" name="{{'quantitativeOccurance_' + i}}" class="custominput" pattern="customPattern" (paste)="_paste($event, occurance)" (keypress)="_keyPress($event, occurance)" (change)="setFixedPrecisionDecimal(occurance,occurance.SelectedValue, i)"
+                                    [(ngModel)]="occurance.SelectedValue" [placeholder]="'Enter'">
+                                <!--<div class="unit">
+                  {{occurance.ProperyMeasureUnitAbbreviation}}
+                </div>-->
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" *ngIf="(occurance.LOINCScale | lowercase) === 'nominal' || (occurance.LOINCScale | lowercase) === 'ordinal'">
+                            <input name="{{'nominalOccurance_' + i}}" type="text" pattern="customPattern" [(ngModel)]="occurance.SelectedValue" class="custominput" [placeholder]="'Enter'">
+                        </div>
+                  
+                        <div class="col-md-3" *ngIf="(occurance.LOINCScale | lowercase) !== 'nominal' && (occurance.LOINCScale | lowercase) !== 'ordinal' 
+                                                    && (occurance.LOINCScale | lowercase)  !== 'quantitative' && (occurance.LOINCScale | lowercase) !== 'nurrative' && (occurance.LOINCScale | lowercase) !== 'narrative'">
+                            <input name="{{'nominalOccurance_' + i}}" type="text" pattern="customPattern" [(ngModel)]="occurance.SelectedValue" class="custominput" [placeholder]="'Enter'">
+                        </div>
+                        <!-- Ref range -->
+
+                        <div class="col-md-4 reference" *ngIf="(occurance.LOINCScale | lowercase) !== 'nurrative' && (occurance.LOINCScale | lowercase) !== 'narrative'">
+                            <div class="margin-top-10" suiPopup [popupTemplate]="reftooltip" popupTrigger="manual" #popup="suiPopup" (mouseover)=" openPopup(popup,'ref',getReferenceRange(occurance.Low, occurance.High,0))"
+                            (mouseout)="popup.close();">
+                            {{getReferenceRange(occurance.Low, occurance.High,0) }}</div>
+                        </div>
+                        <div class="col-md-5" *ngIf="(occurance.LOINCScale | lowercase) !== 'nurrative' && (occurance.LOINCScale | lowercase) !== 'narrative'">
+                            <textarea class="textarea" cols="30" rows="1" placeholder="Comment" rows="1" name="{{'comments_' + i}}" [(ngModel)]="occurance.CommentsValue">
+                                              </textarea>
+                        </div>
+                        <div class="col-md-5 " *ngIf="(occurance.LOINCScale | lowercase) === 'nurrative' || (occurance.LOINCScale | lowercase) === 'narrative'">
+                            <textarea class="textarea" cols="30" name="{{'narrativeOccurance_' + i}}" [(ngModel)]="occurance.SelectedValue" rows="1">
+                                          </textarea>
+                        </div>
+
+                    </div>
+                    <ng-template let-popup #notify>
+                        <div class="info_tooltip">
+                            <div>{{popupTextNotify}} </div>
+                        </div>
+                    </ng-template>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="notifymgs" suiPopup [popupTemplate]="notify" popupTrigger="manual" #popup2="suiPopup" (mouseover)="openPopup(popup2,'notify',occurance.NotifyText)" (mouseout)="popup2.close();popupTextNotify=''"> {{occurance.NotifyText }}</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <!--Task notes-->
+    <div class="row bottom-margin-15px">
+        <div class="col-md-3 ">
+            <div class="pull-right margin-top-10">Task notes</div>
+        </div>
+        <div class="col-md-8">
+            <textarea class="textarea" cols="30" rows="3" [(ngModel)]="dataSvc.comment" [ngClass]="{'mandatory': dataSvc.statusValue===127 && (dataSvc.comment===''||dataSvc.comment===null)}" placeholder="Comments about this task.">
+                </textarea>
+        </div>
+    </div>
+    <!--Status-->
+    <div class="row bottom-margin-15px">
+        <div class="col-md-3 ">
+            <div class="pull-right margin-top-10">Status</div>
+        </div>
+        <div class="col-md-9">
+            <div class="switch-toggle switch-candy">
+                <ng-container *ngFor="let statusInfo of dataSvc.statusData">
+                    <input type="radio" id="{{statusInfo.DisplayName}}" name="status" [(ngModel)]="dataSvc.statusValue" [value]="statusInfo.StatusId" (change)="setReadytoComplete()" (ngModelChange)="this.statusChange($event);validateInputs()" />
+                    <label for="{{statusInfo.DisplayName}}">{{statusInfo.DisplayName}}</label>
+                </ng-container>
+                <a></a>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="row bottom-margin-15px">
+        <div class="col-md-3 ">
+            <div class="pull-right">Completed time</div>
+        </div>
+        <div class="col-md-9">Completed time</div>
+    </div>
+    <div class="row bottom-margin-15px">
+        <div class="col-md-3 ">
+            <div class="pull-right"></div>
+        </div>
+        <div class="col-md-9">To edit the completed time, update the task status to <span><a href="">completed</a></span></div>
+    </div>-->
+
+    <div class="row bottom-margin-15px" *ngIf="this.dataSvc.statusValue===126">
+        <div class="col-md-3 ">
+            <div class="pull-right margin-top-10">Completed time</div>
+        </div>
+        <div class="col-md-9">
+            <div class="row formUnit">
+                <div class="col-md-3">
+                    <input type="text" class="custominput" placeholder="00:00" [(ngModel)]="dataSvc.statusSetTime" (change)="validateInputs('statusSetTime')">
+                </div>
+                <div class="col-md-4  " *ngIf="globalsService.numberOfDays > 7">
+                    <input type="date" class="custominput" min="2015-01-01" max="2025-12-31"  (change)="validateInputs()" [(ngModel)]="dataSvc.statusSetDate">
+                </div>
+                <div class="col-md-5  ">
+                    <div class="four wide field" *ngIf="globalsService.numberOfDays <= 7">
+                        <!-- <lsu-dropdown ngDefaultControl class="width100" [(ngModel)]="dataSvc.statusSetDateValue" (ngModelChange)="validateInputs('statusSetDate',dataSvc.statusSetDateValue)"
+              name="{{'completedDates_' + i}}" [textField]="'dateString'" [value]="'date'" [data]="globalsService.visitDates"
+              [placeHolder]="'Select a Date'">
+            </lsu-dropdown> -->
+
+                        <sui-select class="selection width100" placeholder="Select a Date" [(ngModel)]="dataSvc.statusSetDateValue" (ngModelChange)="validateInputs('statusSetDate',dataSvc.statusSetDateValue)" name="{{'completedDates_' + i}}" labelField="dateString" [options]="globalsService.visitDates"
+                            #select>
+                            <sui-select-option *ngFor="let option of select.filteredOptions" [value]="option">
+                            </sui-select-option>
+                        </sui-select>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9" *ngIf="this.dataSvc.statusValue!==126&&this.dataSvc.initialStatusValue===126">To edit the completed time, update the task status to <span><a href="" (click)="this.dataSvc.statusValue=126">completed</a></span></div>
+    </div>
+
+
+</div>

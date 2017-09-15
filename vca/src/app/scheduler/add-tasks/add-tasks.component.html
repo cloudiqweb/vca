@@ -1,0 +1,93 @@
+<div class="addtask_popup popuparrow">
+
+    <div class="col-md-12 popupheader">
+        <div class="text">Add Task</div>
+        <div class="icon closeButton" (click)="cancelAddTask()"></div>
+    </div>
+    <div class="displaytable">
+        <div class="displaytablecell patientcare">
+            <div *ngIf="optionalTasks && optionalTasks !== null && optionalTasks.length > 0">
+                <wj-flex-grid id="patientcare" [isReadOnly]="true" headersVisibility="None" groupHeaderFormat="{value}  ({count:n0})" [itemsSource]="cvGroupedTasks" #gridOptionalTasks (click)="onTaskSelection(cvGroupedTasks.currentItem)" [width]="350"
+                    scrollMode="vertical" onLoadedRows="onOptionalTasksLoad()">
+                    <wj-flex-grid-column [header]="'Optional Tasks'" [binding]="'Name'" width="*">
+                        <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+                            <div class="addtask_list">{{cell.item.Name}}</div>
+                        </ng-template>
+                    </wj-flex-grid-column>
+                </wj-flex-grid>
+            </div>
+        </div>
+        <div class="displaytablecell patientcare-select">
+            <wj-flex-grid id="selected" [isReadOnly]="true" headersVisibility="None" groupHeaderFormat="{value}    ({count:n0})" [itemsSource]="cvGroupedAddedTasks" scrollMode="vertical">
+                <wj-flex-grid-column [binding]="'Name'" width="*">
+                    <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+                        <div class="addtask_list width">{{cell.item.Name}}</div>
+                        <div class="pull-right closeButton type1" (click)="deleteItem(cvGroupedAddedTasks.currentItem);">
+                         
+                        </div>
+                    </ng-template>
+                </wj-flex-grid-column>
+            </wj-flex-grid>
+
+            <div class="addtask_popup_inner emptymgs" *ngIf="!optionalTasks || optionalTasks===null || optionalTasks.length === 0">
+                <div>No Data Available</div>
+            </div>
+            <div class="addtask_popup_errormgs" *ngIf="validationMessage !== undefined && validationMessage !== ''">
+                {{validationMessage}}
+            </div>
+            <div class="buttons pull-right oButton" >
+                <button class="ui basic button link" (click)="cancelAddTask()">Cancel</button>
+                <button class="ui  floated right  blue button" [disabled]="!optionalTasks || optionalTasks===null || optionalTasks.length === 0" (click)="addTaskDetails()">Add to schedule</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--Old addtask_popup-->
+
+<div class="addtask_popup hide">
+    <div class="">
+        <div class="col-md-12">
+            <div>Add task</div>
+        </div>
+        <div class="col-md-6 bootfix margin-left-15">
+            <div class="addtask_popup_inner type1" *ngIf="optionalTasks && optionalTasks !== null && optionalTasks.length > 0">
+                <wj-flex-grid [isReadOnly]="true" headersVisibility="None" groupHeaderFormat="{value}  ({count:n0})" [itemsSource]="cvGroupedTasks" #gridOptionalTasks (click)="onTaskSelection(cvGroupedTasks.currentItem)" scrollMode="vertical" onLoadedRows="onOptionalTasksLoad()">
+                    <wj-flex-grid-column [header]="'Optional Tasks'" [binding]="'Name'" width="*">
+                        <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+                            <div class="addtask_list">{{cell.item.Name}}</div>
+                        </ng-template>
+                    </wj-flex-grid-column>
+                </wj-flex-grid>
+            </div>
+        </div>
+        <div class="col-md-6 bootfix margin-left-15 margin-right-15" *ngIf="!optionalTasks || optionalTasks===null || optionalTasks.length === 0">
+            <div class="addtask_popup_inner emptymgs">
+                <div>No Data Available</div>
+            </div>
+        </div>
+        <div class="col-md-6 bootfix margin-left-15 margin-right-15">
+            <div class="addtask_popup_inner type2">
+                <wj-flex-grid id="selected" [isReadOnly]="true" headersVisibility="None" groupHeaderFormat="{value}    ({count:n0})" [itemsSource]="cvGroupedAddedTasks" scrollMode="vertical">
+                    <wj-flex-grid-column [binding]="'Name'" width="*">
+                        <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+                            <div class="addtask_list width">{{cell.item.Name}}</div>
+                            <div class="pull-right closeButton" (click)="deleteItem(cvGroupedAddedTasks.currentItem);"></div>
+                        </ng-template>
+                    </wj-flex-grid-column>
+                </wj-flex-grid>
+            </div>
+            <div class="addtask_popup_errormgs" *ngIf="validationMessage !== undefined && validationMessage !== ''">
+                {{validationMessage}}
+            </div>
+            <div class="pull-right oButton" >
+                <button class="ui basic button link" (click)="cancelAddTask()">Cancel</button>
+                <button class="ui  floated right  green button" [disabled]="!optionalTasks || optionalTasks===null || optionalTasks.length === 0" (click)="addTaskDetails()">Add to schedule</button>
+            </div>
+        </div>
+    </div>

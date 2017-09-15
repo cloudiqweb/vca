@@ -1,0 +1,724 @@
+{
+  "StatusCode": 200,
+  "Data": {
+    "OrderId": 452370029,
+    "NumberOfDays": 1,
+    "TaskCategories": [
+      {
+        "CategoryId": 4,
+        "CategoryName": "Diagnostics",
+        "TaskSeriesCount": 6,
+        "TaskSeries": [
+          {
+            "TaskSeriesId": 10418,
+            "Name": "Vetscreen SA025",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": "Instructions for Vetscreen SA025",
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "9:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30744,
+                    "Name": "Vetscreen SA025",
+                    "StatusId": 125,
+                    "StatusName": "Complete",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10419,
+            "Name": "Vetscreen SA025",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "9:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30745,
+                    "Name": "Vetscreen SA025",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10421,
+            "Name": "Hyperthyroid Panel SA440",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 2,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "9:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30747,
+                    "Name": "Hyperthyroid Panel SA440",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30748,
+                    "Name": "Hyperthyroid Panel SA440",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10422,
+            "Name": "Coagulation Profile 2 SA300",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "9:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30749,
+                    "Name": "Coagulation Profile 2 SA300",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10424,
+            "Name": "Adrenal Androgen Ferret Profile S17116",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "9:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30751,
+                    "Name": "Adrenal Androgen Ferret Profile S17116",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10475,
+            "Name": "Maldigestion Profile Fel SA275",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 15,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "17:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30865,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30866,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30867,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30868,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30869,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30870,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30871,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30872,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30873,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30874,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30875,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30876,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30877,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30878,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30879,
+                    "Name": "Maldigestion Profile Fel SA275",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "CategoryId": 5,
+        "CategoryName": "Medications/Procedures",
+        "TaskSeriesCount": 4,
+        "TaskSeries": [
+          {
+            "TaskSeriesId": 10420,
+            "Name": "Ampicillin(Polyflex)100mg/ml/ml ",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "9:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30746,
+                    "Name": "Ampicillin(Polyflex)100mg/ml/ml ",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10423,
+            "Name": "Diazepam(gen) 5mg/ml/ml ",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "9:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30750,
+                    "Name": "Diazepam(gen) 5mg/ml/ml ",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10425,
+            "Name": "Diphenhydramine(gen)50mg/ml/ml ",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "9:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30752,
+                    "Name": "Diphenhydramine(gen)50mg/ml/ml ",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10426,
+            "Name": "Diazepam (gen) 10mg Tab ",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "9:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30753,
+                    "Name": "Diazepam (gen) 10mg Tab ",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "CategoryId": 2,
+        "CategoryName": "Patient Care",
+        "TaskSeriesCount": 3,
+        "TaskSeries": [
+          {
+            "TaskSeriesId": 10439,
+            "Name": "Feed",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": "\tFeed AMT dry/wet. Free choice. NPO.",
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "11:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30784,
+                    "Name": "Feed",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10441,
+            "Name": "Water",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": "\tNo water; free choice; specific volume",
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "11:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30786,
+                    "Name": "Water",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10472,
+            "Name": "Appetite",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "17:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30848,
+                    "Name": "Appetite",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "CategoryId": 1,
+        "CategoryName": "Monitoring",
+        "TaskSeriesCount": 3,
+        "TaskSeries": [
+          {
+            "TaskSeriesId": 10440,
+            "Name": "Vitals",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "11:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30785,
+                    "Name": "Vitals",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10473,
+            "Name": "Blood pressure (continuous)",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 15,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "17:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30849,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30850,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30851,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30852,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30853,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30854,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30855,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30856,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30857,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30858,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30859,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30860,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30861,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30862,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  },
+                  {
+                    "TaskOccurrenceId": 30863,
+                    "Name": "Blood pressure (continuous)",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "TaskSeriesId": 10474,
+            "Name": "Body weight",
+            "DueCount": 0,
+            "CompletedCount": 0,
+            "OverdueCount": 0,
+            "NotScheduledCount": 1,
+            "StatusId": 122,
+            "StatusName": "Active",
+            "Instructions": null,
+            "HourlyTaskOccurrences": [
+              {
+                "Hour": "17:00",
+                "Day": "1",
+                "Date": "4/11/2017",
+                "TaskOccurrences": [
+                  {
+                    "TaskOccurrenceId": 30864,
+                    "Name": "Body weight",
+                    "StatusId": 125,
+                    "StatusName": "Unscheduled",
+                    "UpdatedBy": null,
+                    "UpdatedTime": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Links": [
+    {
+      "Rel": "self",
+      "Href": "https://lapmsqa-ns01.vcaantech.com/WoofwareWebAPI/API/Orders/452370029/AggregatedData/01/01/2017%2000:00:00/04/12/2017%2000:00:00",
+      "MethodType": "GET"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+<div id="whiteboard">
+
+    <div class="displaytablecell filter">
+        <!--<button id="btnPopup" (click)="loadFilterData()">Filter</button>-->
+        <button id="btnPopup" (click)="loadFilterData()" class="ui basic button filterButton">
+             Filter : <span>{{filterState}}</span>
+          </button>
+        <wj-popup #popup [modal]="true" class="popuparrow" owner="#btnPopup" hideTrigger=None id="fillterpopup" (showing)="changeTimer('Pause')" (hiding)="changeTimer('Resume')">
+            <div class="col-md-12 popupheader bottom-margin-15px">
+                <div class="text">Edit Filter</div>
+                <div class="icon closeButton" (click)="closePopup()">
+                </div>
+            </div>
+            <div class="square1">
+                <div class="">
+                    <div class="inner">
+                        <div class="row innerTop">
+                            <div class="ui checkbox col-md-12">
+                                <!--<lsu-checkbox [(ngModel)]="showCritical" [disabled]="false" [label]="'Show critical patients first'" [type]="'toggle'">
+                                  </lsu-checkbox>-->
+                                <input [(ngModel)]="jsonFilter.SortCriticalFirst" type="checkbox" id="critical">
+                                <label for="critical">Show critical patients first</label>
+                            </div>
+                        </div>
+                        <div class="sixteen wide column">
+                            <div class="label">Sort by</div>
+                            <div class="switch-toggle switch-candy">
+                                <input id="patient" name="view" type="radio" [checked]="jsonFilter.SortBy==='Patient'">
+                                <label for="patient" (click)="setSort('Patient')">Patient</label>
+
+                                <input id="client" name="view" type="radio" [checked]="jsonFilter.SortBy==='Client'">
+                                <label for="client" (click)="setSort('Client')">Client</label>
+                                <a></a>
+                            </div>
+                        </div>
+
+                        <div class="sixteen wide column">
+                            <div class="label">Filters</div>
+                            <div class="filter_list_outer">
+                                <div class="listitem" (click)="getCSSClassesCaller();setFilterType('Visit')">
+                                    <div class="pull-left">Visit type</div>
+                                    <div class="icon"></div>
+                                    <div class="pull-right text-right">
+                                        <span suiPopup [popupTemplate]="popupTemplate"  popupTrigger="hover"  (mouseover)="popuptext=selectionDisplay('Visit')">
+                                          {{selectionDisplay('Visit') | truncate:25}}
+                                          </span>
+                                    </div>
+                                </div>
+                                <div class="listitem" (click)="getCSSClassesCaller();setFilterType('Location')">
+                                    <div class="pull-left">Location</div>
+                                    <div class="icon"></div>
+                                    <div class="pull-right text-right">
+                                        <span suiPopup [popupTemplate]="popupTemplate"  popupTrigger="hover"  (mouseover)="popuptext=selectionDisplay('Location')"  >
+                                          {{selectionDisplay('Location') | truncate:25}}
+                                          </span>
+                                    </div>
+                                </div>
+                                <div class="listitem" (click)="getCSSClassesCaller();setFilterType('Resource')">
+                                    <div class="pull-left">Resources</div>
+                                    <div class="icon"></div>
+                                    <div class="pull-right text-right">
+                                        <span suiPopup [popupTemplate]="popupTemplate"  popupTrigger="hover"  (mouseover)="popuptext=selectionDisplay('Resource')"  >
+                                              {{selectionDisplay('Resource') | truncate:25}}
+                                          </span>
+                                    </div>
+                                </div>
+                                <div class="listitem" (click)="getCSSClassesCaller();setFilterType('Department')">
+                                    <div class="pull-left">Department</div>
+                                    <div class="icon"></div>
+                                    <div class="pull-right text-right">
+                                        <span suiPopup [popupTemplate]="popupTemplate"  popupTrigger="hover"  (mouseover)="popuptext=selectionDisplay('Department')"  >
+                                          {{selectionDisplay('Department') | truncate:25}}
+                                          </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button (click)="applyFilter()" class="wj-hide ui green button pull-right">Apply</button>
+                            <button class="ui button hyperlink pull-left" (click)="clearFilters()">Clear all filters</button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div [ngClass]="{square2:true,square3:sq3}">
+                    <div *ngIf="selectedFilter!==''">
+                        <div class="back_btn" (click)="getCSSClassesCaller()">
+                            <span class="icon"></span>
+                            <span class="text">Back</span>
+                            <div class="title">
+                                {{this.selectedFilter}}
+                            </div>
+                        </div>
+                        <div class="ui checkbox selectall">
+                            <input id="selectall" type="checkbox" name="example" (click)="selectAll()" [ngModel]="selectAllCheck()">
+                            <label for="selectall"> All {{this.selectedFilter}}s</label>
+                        </div>
+                    </div>
+
+                    <!--<angular2-multiselect [data]="departmentTypeDropdownList" [(ngModel)]="departmentselectedItems" [settings]="departmentdropdownSettings" (onSelect)="onItemSelect($event)"
+                          (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>-->
+                    <ul [ngSwitch]="selectedFilter" id="selectedFilter">
+                        <li *ngSwitchCase="'Visit'">
+                            <wj-flex-grid [isReadOnly]="true" headersVisibility="None" [itemsSource]="filterTypeSource">
+                                <wj-flex-grid-column [header]="'Optional '" [binding]="'VisitId'" width="*">
+                                    <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+                                        <div class="ui checkbox" (click)="FiltersSelection(cell.item.VisitTypeId,'Visit')">
+                                            <input type="checkbox" [checked]="selectionCheckDisplay(cell.item.VisitTypeId,'Visit')">
+                                            <label> {{cell.item.VisitType}}</label>
+                                        </div>
+                                    </ng-template>
+                                </wj-flex-grid-column>
+                            </wj-flex-grid>
+                        </li>
+                        <li *ngSwitchCase="'Location'">
+                            <wj-flex-grid [isReadOnly]="true" headersVisibility="None" [itemsSource]="filterTypeSource">
+                                <wj-flex-grid-column [header]="'Optional '" [binding]="'VisitId'" width="*">
+                                    <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+                                        <div class="ui checkbox" (click)="FiltersSelection(cell.item.LocationId,'Location')">
+                                            <input type="checkbox" [checked]="selectionCheckDisplay(cell.item.LocationId,'Location')">
+                                            <label> {{cell.item.LocationName}}</label>
+                                        </div>
+                                    </ng-template>
+                                </wj-flex-grid-column>
+                            </wj-flex-grid>
+                        </li>
+                        <li *ngSwitchCase="'Resource'">
+                            <wj-flex-grid [isReadOnly]="true" headersVisibility="None" [itemsSource]="filterTypeSource">
+                                <wj-flex-grid-column [header]="'Optional '" [binding]="'VisitId'" width="*">
+                                    <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+
+                                        <div class="ui checkbox" (click)="FiltersSelection(cell.item.ResourceId,'Resource')">
+                                            <input type="checkbox" [checked]="selectionCheckDisplay(cell.item.ResourceId,'Resource')">
+                                            <label> {{cell.item.DisplayName}}</label>
+                                        </div>
+
+                                    </ng-template>
+                                </wj-flex-grid-column>
+                            </wj-flex-grid>
+                        </li>
+                        <li *ngSwitchCase="'Department'">
+                            <wj-flex-grid [isReadOnly]="true" headersVisibility="None" [itemsSource]="filterTypeSource">
+                                <wj-flex-grid-column [header]="'Optional '" [binding]="'VisitId'" width="*">
+                                    <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+
+                                        <div class="ui checkbox" (click)="FiltersSelection(cell.item.DepartmentId,'Department')">
+                                            <input type="checkbox" [checked]="selectionCheckDisplay(cell.item.DepartmentId,'Department')">
+                                            <label> {{cell.item.DepartmentName}}</label>
+                                        </div>
+                                    </ng-template>
+                                </wj-flex-grid-column>
+                            </wj-flex-grid>
+                        </li>
+                        <li *ngSwitchDefault></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--<button class="wj-hide-ok" ng-click="handleOK()">OK</button>
+              <button class="wj-hide-cancel">Cancel</button>-->
+        </wj-popup>
+    </div>
+</div>
+<ng-template let-popup #popupTemplate>
+    <div class="toottip-content">{{popuptext}}
+    </div>
+</ng-template>

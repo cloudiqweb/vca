@@ -1,0 +1,296 @@
+<!--<div class="row">
+    <patient></patient>
+</div>-->
+<div class="row scheduler-outer">
+    <div id="schedulergrid">
+        <wj-flex-grid [selectionMode]="'None'" [frozenColumns]="1" id="wijgridObject" #flex [style.width.%]="100" [style.height.px]="height" [itemsSource]="tasks" headersVisibility="Column" [allowSorting]="false" [allowResizing]="'None'">
+            <wj-flex-grid-column [header]="'Category'" [binding]="'category'" [width]="520" [isReadOnly]="true">
+                <ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'">
+                    <div class="task-table">
+                        <div class="taskcell">
+                            <button class="ui active button addbutton task" id="addtask" (click)="showOptionalTasks = true">
+                                     Task
+                            </button>
+
+                            <wj-popup [modal]="true" id="addtask" owner="#addtask" #wjAddTask show-trigger="Click" hide-trigger="None" (showing)="showing_WJ_Popup($event)" (hiding)="hiding_WJ_Popup($event)">
+                                <add-tasks [showOptionalTasks]="showOptionalTasks" (notifyShowOptionalTasks)="onOptionalTasksShow($event)" *ngIf="showOptionalTasks"></add-tasks>
+                            </wj-popup>
+
+                            <button class="ui active button addbutton carenote" id="carenotes" (click)="showCareNotes = true">
+                                     Care note
+                             </button>
+                            <wj-popup [modal]="true" id="carenotes" owner="#carenotes" #wjAddCareNotes show-trigger="Click" hide-trigger="None" (showing)="showing_WJ_Popup($event)" (hiding)="hiding_WJ_Popup($event)">
+                                <careNotes [showCareNotes]="showCareNotes" (notifyCloseCareNotes)="onCloseCareNotes($event)" *ngIf="showCareNotes"></careNotes>
+                            </wj-popup>
+                        </div>
+                        <div class="unscheduled-header">
+                            <div>Not Sched- uled</div>
+                            <!--<div>Sched</div>
+                            <div>-uled</div>-->
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-item="item">
+                    <div class="task-table">
+                        <div class="taskcell txt">
+                            <!--class="category-txt"-->
+                            <div (contextmenu)="onContextMenu($event, item);" (click)="onTaskScheduleInvoked(item.TaskSeriesId,item.Name,item.Instructions,item.NotScheduledCount)">
+                                <div>
+                                    <ng-container *ngIf="item.Name">
+                                        <div class="itemname" [ngClass]="{'strike-outCancelled': item.StatusId===123 || item.IsDiscontinued}">{{item.Name}} <span *ngIf="item.QuantityMustMatch && item.DoseQuantity">- &nbsp;{{item.DoseQuantity}}&nbsp;{{item.Unit}}</span></div>
+                                    </ng-container>
+                                    <ng-container *ngIf="item.Instructions">
+                                        <div class="instructiontextellipsis pull-left" suiPopup [popupTemplate]="smallpopupTemplate" popupTrigger="hover" (mouseover)="popuptext=item.Instructions" [ngClass]="{'strike-outCancelled': item.StatusId===123}">{{item.Instructions}}</div>
+                                    </ng-container>
+                                </div>
+                                <context-menu>
+                                    <div class="contextmenu_custom_outer">
+                                        <div class="ngx-contextmenu">
+                                            <ng-template *ngFor="let action of contextMenuActions" contextMenuItem let-item [visible]="action.visible" [enabled]="action.enabled" (execute)="action.click($event.item)">
+                                                <div class="contextmenu_custom" *ngIf="(showDiscontinue && action.name === 'Discontinue')
+                            || (showOccurrenceOptions && action.name !== 'Discontinue' && action.showOption)">
+                                                    {{ action.html(item) }}
+                                                </div>
+                                            </ng-template>
+                                        </div>
+                                    </div>
+                                </context-menu>
+                            </div>
+                        </div>
+                        <div class="overduecount-cell" *ngIf="item.OverdueCount > 0" suiPopup [popupTemplate]="smallpopupTemplate" popupTrigger="hover" (mouseover)="popuptext='Number of overdue tasks.'">
+
+
+
+                            <a class="ui red circular label">{{item.OverdueCount}}</a> </div>
+                        <div class="unscheduled-cell">
+                            <div class="Unscheduled inner" *ngIf="item.NotScheduledCount > 0" (click)="onNotScheduledSingleClick(item)" (dblclick)="onNotScheduledDoubleClick($event, item)" (contextmenu)="onContextNotScheduledOccurancesMenu($event, item.TaskSeriesId, item.Name, item.Instructions, item.NotScheduledCount);">
+                                <!--<div class="Unscheduled inner">-->
+                                <!--<div class="occurance-icon">
+                                    <i class="delete calendar icon"></i>
+                                </div>-->
+                                <div class="occurrence-text" style="cursor:pointer">{{item.NotScheduledCount}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template wjFlexGridCellTemplate [cellType]="'GroupHeader'" let-item="item" let-cell="cell">
+                    <div class="groupheader_txt groupIcon {{item.items[0].icon}}">
+                        {{item.name}} ({{item.items[0].TaskSeriesCount}})
+                    </div>
+                </ng-template>
+            </wj-flex-grid-column>
+            <wj-flex-grid-column *ngFor="let num of timeSeries" [width]="60" [isReadOnly]="true" [aggregate]="'Sum'">
+
+                <ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'" let-cell="cell">
+                    <div *ngIf="cell.row.index==0">{{getColumnHeader(this.pageIndex+1)}}</div>
+                    <div class="currentTime-small" *ngIf="cell.row.index!==0 && isDisplayTimeBar && num.id == timeBarCellPosition">{{timeBarCurrentTime}}</div>
+                    <div *ngIf="cell.row.index!==0 &&( !isDisplayTimeBar || (isDisplayTimeBar && num.id != timeBarCellPosition))"> {{num.grid}}</div>
+                </ng-template>
+                <ng-template wjFlexGridCellTemplate [cellType]="'Group'" let-cell="cell">
+                    <div *ngIf="isDisplayTimeBar" class="timeBarCellwrap">
+                        <div *ngIf="num.id == timeBarCellPosition" [style.left.px]="timeBarLeftGrp" class="timebarLineGrp"></div>
+                    </div>
+                </ng-template>
+                <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-item="item">
+                    <div *ngIf="isDisplayTimeBar && num.id == timeBarCellPosition" [style.left.px]="timeBarLeft" class="timebarLine">&nbsp;</div>
+                    <ul *ngIf="item[num.display].groupedTasks.length > 0" class="occurence{{getCount(item[num.display].groupedTasks.length)}}">
+                        <li *ngFor="let t of item[num.display].groupedTasks" class="{{t.key}}" [ngClass]="(isDisplayTimeBar && num.id >= timeBarCellPosition) ? '' : 'pastTasks'" suiPopup [popupTemplate]="gridTemplate" [popupTransitionDuration]="200" popupPlacement="right" popupTrigger="hover"
+                            #gridtooltip="suiPopup" [popupDelay]="300" (mouseover)="showGroupToolTip($event,t,item,gridtooltip)" (click)="onTaskOccuranceSingleClick(item.TaskSeriesId, item.Name, item.Instructions, num.display, t.value);" (dblclick)="onTaskOccuranceDoubleClick($event, item, t, num.display);"
+                            (mouseout)="hideGroupToolTip();closeGridPopup(gridtooltip)" (contextmenu)="onContextOccurrenceMenu($event, item, t, num.display);">
+
+                            <!--<a class="ui red circular label pull-right">{{item.OverdueCount}}</a>-->
+
+                            <div class="occurance-icon">
+                                <!-- Reverted 1.4 usecase -->
+                                <div class="asterisk" *ngIf="t.value[0].PostVisitComplete">*</div>
+                                <!--Overdue-->
+                                <span class="tIcon overdue"></span>
+                                <!-- Duenow-->
+                                <span class="tIcon duenow"></span>
+                                <!--Cancel-->
+                                <span class="tIcon canceled"></span>
+                                <!--Skipped-->
+                                <span class="tIcon skipped"></span>
+                                <!--Planned-->
+                                <span class="tIcon scheduled"></span>
+                                <!--Complete-->
+                                <span class="tIcon completed"></span>
+
+                            </div>
+
+                            <!--Count-->
+                            <div *ngIf="item[num.display].groupedTasks.length <=2 && t.value.length > 1" class="count">{{t.value.length}}</div>
+
+                            <div *ngIf="t.key == statusCompleted && item[num.display].groupedTasks.length == 1 && t.value.length == 1">
+                                <div class="display-time">
+                                    {{getFormattedDate(t.value[0].StatusSetDate)}}
+
+                                </div>
+
+                                <div class="display-resourcename">
+                                    {{this.getUserInitials(t.value[0].StatusSetBy)}}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="displayTimeBar" [ngClass]="((!isDisplayTimeBar) || (isDisplayTimeBar && num.id < timeBarCellPosition)) ? 'no-data-sch' : ''" *ngIf="item[num.display].groupedTasks.length === 0" (mouseover)="showGroupToolTip($event,undefined,item)" (mouseout)="hideGroupToolTip()"
+                        (dblclick)="onScheduleNewTaskDblClick(item,item.TaskSeriesId,num.display, true)" (contextmenu)="onContextOccurrenceMenu($event, item, {}, num.display);">
+                    </div>
+                </ng-template>
+            </wj-flex-grid-column>
+        </wj-flex-grid>
+    </div>
+    <div class="legend-pagenation ">
+        <div class="">
+            <div class="displaytable">
+                <div class="displaytablecell lengendcell">
+                    <ul class="legend">
+                        <li>
+                            <div class="legend-square overdue"></div><span class="lengendcelltxt ">Overdue</span>
+                        </li>
+                        <li>
+                            <div class="legend-square complete"></div><span class="lengendcelltxt ">Completed</span>
+                        </li>
+                        <li>
+                            <div class="legend-square duenow"></div><span class="lengendcelltxt ">Due now</span>
+                        </li>
+                        <li>
+                            <div class="legend-square planned"></div><span class="lengendcelltxt ">Planned in future</span>
+                        </li>
+                        <li>
+                            <div class="legend-square skipped"></div><span class="lengendcelltxt ">Skipped</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="displaytablecell">
+                    <span class="txt midText padding-l-20">{{appVersionNumber}}</span>
+                </div>
+                <div class="displaytablecell midText">
+                    <div class="footer-cell">
+
+                        <span class="ui checkbox-right">
+                            <input id="active" type="checkbox" name="active" [value]="true" (change)="loadSchedulerData()" [(ngModel)]="showCancelled" />
+                            <label for="active">Show canceled</label>
+                        </span>
+                        <span class="lengendcelltxt">
+                        Last refreshed: <strong>{{timerExceuteTime}}</strong>
+                         </span>
+                    </div>
+                </div>
+                <div class="displaytablecell pagenationcell">
+
+                    <div class="">
+                        <div class="ui icon buttons">
+                            <button class="ui button pagenation left" (click)="navigatePageItem('<')" [disabled]="pageIndex <= 0">
+                <span class="left arrow"></span>
+                </button>
+                            <button class="ui button pagenation" (click)="navigatePageItem('-')" [disabled]="pageIndex <= 0">
+                <span class="left arrow"></span>
+                </button>
+                            <div class="ui button pagenation label12"> Day&nbsp;
+                                <input [disabled]="pagination.length == 0" type="number" min="1" max="{{this.pagination.length}}" value='{{(this.pageIndex < 9) ? ("0" + (this.pageIndex + 1)) : (this.pageIndex + 1)}}' (change)="navigatePageItemByInput($event)">                                of {{(this.pagination.length
+                                < 10) ? ( "0" + this.pagination.length) : this.pagination.length}} </div>
+                                    <button class="ui button pagenation" (click)="navigatePageItem('+')" [disabled]="pageIndex >= pagination.length - 1">
+                <span class="right arrow"></span>
+                </button>
+                                    <button class="ui button pagenation" (click)="navigatePageItem('>')" [disabled]="pageIndex >= pagination.length - 1">
+                <span class="right arrow"></span>
+                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <lsu-modal ngDefaultControl [(ngModel)]="showSeriesModal" id="Scheduleseries" [options]="modalOptions" *ngIf="showSeriesModal">
+                <div class="header">
+                    <h4 class="ui header">Edit/Complete {{taskSeriesName}}</h4>
+                    <div class="icon closeButton" (click)="closeSeriesModalFromUI()">
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="description">
+                        <taskSchedule [taskSeriesId]="taskSeriesId" [taskSeriesOpenTime]="seriesOpenTime" [showAppointments]="showAppointments">
+                        </taskSchedule>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="ui basic button link" (click)="closeSeriesModalFromUI()">Cancel</button>
+                    <button class="ui  floated right  blue button" (click)="savePatientScheduleInfo()" [disabled]="!dataSvc.isValidSeriesModal || !dataSvc.taskScheduleOtherChange">
+                        <ng-container *ngIf="this.dataSvc.taskScheduleInfoChanged">
+                            Schedule
+                        </ng-container>
+                        <ng-container *ngIf="!this.dataSvc.taskScheduleInfoChanged">
+                            Save
+                        </ng-container>
+                    </button>
+                </div>
+            </lsu-modal>
+            <lsu-modal ngDefaultControl [(ngModel)]="showOccurrenceModal" id="Occurrencesries" [options]="modalOptions" *ngIf="showOccurrenceModal">
+                <div class="header">
+                    <h4 class="ui header">Edit/Complete {{taskSeriesName}} - {{this.dataSvc.scheduledTime}}</h4>
+                    <div class="icon closeButton" (click)="closeOccurrenceModalFromUI()">
+                    </div>
+                </div>
+                <div class="content max_scroll">
+                    <div class="description">
+                        <taskOccurance [occurances]="occurances" [taskOccuranceOpenTime]="occuranceOpenTime" [instructions]="instructionsText">
+                        </taskOccurance>
+
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="ui basic button link" (click)="closeOccurrenceModalFromUI()">Close</button>
+                    <!-- Reverted 91089 changes -->
+                    <button class="ui  floated right  blue basic button" [disabled]="(!dataSvc.readyToSave || !dataSvc.isValidOccurrenceModal)||(this.dataSvc.statusValue===127&&((this.dataSvc.comment===''||this.dataSvc.comment===null)||(this.dataSvc.comment===this.dataSvc.initialComment)))"
+                        (click)="savePatientFindings(false)">Save</button>
+                    <!-- <button class="ui  floated right  blue basic button" [disabled]="(!dataSvc.readyToSave || !dataSvc.isValidOccurrenceModal)||!dataSvc.buttonFlag" (click)="savePatientFindings(false)">Save</button> -->
+                    <button class="ui  floated right  blue button" [disabled]="(!dataSvc.readyToComplete || !dataSvc.isValidOccurrenceModal)||!dataSvc.buttonFlag" (click)="savePatientFindings(true)">Complete &amp; Save</button>
+                </div>
+            </lsu-modal>
+        </div>
+    </div>
+    <ng-template let-popup #popupTemplate>
+        <div class="toottip-content large">{{popuptext}}
+        </div>
+    </ng-template>
+    <ng-template let-popup #smallpopupTemplate>
+        <div class="toottip-content">{{popuptext}}
+        </div>
+    </ng-template>
+
+    <ng-template let-popup #gridTemplate>
+        <div class="ui segments megaTooltip">
+            <div class="ui segment tooltip scheduler " *ngFor="let tt of tooltipArray">
+                <div class="scheduler occurence_border" [ngClass]="tt[2][1]">
+                    <div class="icon">
+                        <div *ngIf="tt[2][1]=='Duenow'">
+                            <span class="tIcon duenow"></span>
+                        </div>
+                        <div *ngIf="tt[2][1]=='Complete'">
+                            <span class="tIcon completed"></span>
+                        </div>
+                        <div *ngIf="tt[2][1]=='Overdue'">
+                            <span class="tIcon overdue"></span>
+                        </div>
+                        <div *ngIf="tt[2][1]=='Skipped'">
+                            <span class="tIcon skipped"></span>
+                        </div>
+                        <div *ngIf="tt[2][1]=='Scheduled'">
+                            <span class="tIcon scheduled"></span>
+                        </div>
+                        <div *ngIf="tt[2][1]=='Cancelled'">
+                            <span class="tIcon canceled"></span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class='time scheduler'>{{tt[1][1]}}</div>
+                <div class="description">{{tt[0][1]}}
+                    <div *ngIf="tt[3][1]">Completed post-visit</div>
+                </div>
+
+            </div>
+        </div>
+    </ng-template>

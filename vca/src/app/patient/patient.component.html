@@ -1,0 +1,136 @@
+<div class="pet-banner">
+    <div class="row">
+        <!--Patient image and Alert-->
+        <div class="col-md-4 right-border">
+
+            <div class="displaytable type1">
+                <div class="displaytablecell">
+                    <a *ngIf="reloadPageType !=='whiteboard' && reloadPageType !=='both'" [routerLink]="['/whiteboard']">
+                        <i class="chevron left icon"></i>
+                    </a>
+                    <a *ngIf="reloadPageType ==='whiteboard' || reloadPageType==='both'" href="{{this.globalsService.queryStringURL}}&startPage=whiteboard">
+                        <i class="chevron left icon"></i>
+                    </a>
+                </div>
+                <div class="displaytablecell patientimage" *ngIf="isDataTransformed">
+                    <img [src]="imageUrl | secure" class="pet-img circle" alt="" (error)="updateUrl($event)" />
+                    <div class="pet-gender-border" [ngClass]="{'male' : patientDetails?.Patient.Sex === 1,
+                        'female' : patientDetails?.Patient.Sex == 2 ,
+                        'unknow' : (patientDetails?.Patient.Sex !== 1 && patientDetails?.Patient.Sex !== 2)}"></div>
+                    <div class="cirtical_alert" *ngIf="patientDetails?.Patient.IsCritical">!</div>
+                </div>
+                <div class="vPatientName" *ngIf="isDataTransformed">
+                    <ul class="cell">
+                        <li class="client_owner">
+                            <div class="petname" suiPopup [popupTemplate]="popupTemplate" popupTrigger="manual" #popup="suiPopup" (mouseover)="openPopup(popup,'pet')" (mouseout)="popup.close();"> {{petNameTruncate ? (patientDetails?.Patient.PetName | truncate : 12): patientDetails?.Patient.PetName}}</div>
+                            <span suiPopup [popupTemplate]="popupTemplate" popupTrigger="manual" #clientpopup="suiPopup" (mouseover)="openPopup(clientpopup, 'client' )" (mouseout)="clientpopup.close();">{{clientNameTruncate ? (patientDetails?.Client.LastName | truncate : 12) : patientDetails?.Client.LastName }}</span>
+                        </li>
+                        <li class="client_resource cellinfo dr_name" *ngIf="patientDetails?.Visit.PrimaryResourceDisplayName">
+                            <span class="txt" suiPopup [popupTemplate]="popupTemplate" popupTrigger="hover" (mouseover)="popuptext=patientDetails?.Visit.FullResourceNameWithDepartment">{{patientDetails?.Visit.PrimaryResourceDisplayName}}</span>
+                        </li>
+                        <li class="client_alert cellinfo vcaAlert" *ngIf="patientDetails?.Patient.Alert">
+                            <span class="txt" suiPopup [popupTemplate]="popupTemplate" popupTrigger="hover" (mouseover)="popuptext=patientDetails?.Patient.Alert"> {{patientDetails?.Patient.Alert }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Wellness and Concerns-->
+        <div class="col-md-2 right-border">
+            <ul class="vcaClients cell">
+                <li class="client_wellness cellinfo wellness" *ngIf="patientDetails?.Visit.AppointmentReason">
+                    <span class="txt" suiPopup [popupTemplate]="popupTemplate" popupTrigger="hover" (mouseover)="popuptext=patientDetails?.Visit.AppointmentReason">{{patientDetails?.Visit.AppointmentReason}}</span>
+                </li>
+                <li class="client_concerns cellinfo concerns" *ngIf="patientDetails?.Patient.Concerns">
+                    <ng-container *ngFor="let concern of patientDetails?.Patient.Concerns;let i = index"><span class="txt">{{concern}}<span>, </span></span>
+                        <!--<span class="comma" *ngIf="i != patientDetails?.Patient.Concerns.length-1">,</span>-->
+                    </ng-container>
+                    <!--<span *ngFor="let concern of patientDetails?.Patient.Concerns;let i = index">
+                        {{concern}}
+                        <span *ngIf="i != patientDetails?.Patient.Concerns.length-1">,</span>
+                    </span>-->
+                </li>
+            </ul>
+
+
+        </div>
+        <!--Breed Details-->
+        <div class="col-md-3 right-border">
+            <div class="row client_appearance">
+                <div class="col-md-4 topBox">
+                    <div class="type1_content">
+                        <div suiPopup [popupTemplate]="popupTemplate"  popupTrigger="hover"  (mouseover)="popuptext=patientDetails?.Patient.SpeciesName"  class="species"> {{patientDetails?.Patient.SpeciesName }}</div>
+                    </div>
+                    <div class="smallfont">Species</div>
+                </div>
+                <div class="col-md-8 topBox">
+                    <div class="type1_content">
+                        <div suiPopup [popupTemplate]="popupTemplate"  popupTrigger="hover"  (mouseover)="popuptext=patientDetails?.Patient.Color" class="nowhitespace">{{patientColor | truncate : 27}}</div>
+                </div>
+
+                <div class="smallfont">color</div>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+        <div class="row client_appearance">
+            <div class="col-md-4 right-border1">
+                <div class="type1_content">
+                    <div>{{patientDetails?.Patient.DisplayAge }}</div>
+                </div>
+                <div class="smallfont">Age</div>
+            </div>
+
+            <div class="col-md-4 right-border1">
+                <div class="type1_content">
+                    <div>{{patientDetails?.Patient.Sex === 1 ? 'Male' : (patientDetails?.Patient.Sex === 2 ? 'Female' : "")}}</div>
+                </div>
+                <div class="smallfont">Sex</div>
+            </div>
+            <div class="col-md-4">
+                <div class="type1_content">{{patientDetails?.Patient.Weight}}<span *ngIf="patientDetails?.Patient.Weight">kg </span> </div>
+                <div class="smallfont">Weight</div>
+                <div class="date">{{formattedWeightTakenDate(patientDetails?.Patient.WeightTakenDate)}}</div>
+            </div>
+        </div>
+    </div>
+    <!--Dropdown and nav-icon-button-->
+    <div class="col-md-3 right-border">
+        <div class="row locationBox">
+            <div class="col-md-12">
+                <div class="client_location">Location</div>
+                <div class="displaytable client_location_dropdown">
+                    <div class="displaytablecell ">
+                        <!-- [ngClass]="{'mandatory': selectedLocation == undefined}"  -->
+                        <lsu-dropdown ngDefaultControl [(ngModel)]="selectedLocation" [data]="locationDetails" [textField]="'LocationName'" (ngModelChange)="onLocationChange(selectedLocation)" [placeHolder]="'Select a Location'"></lsu-dropdown>
+                    </div>
+                    <div class="displaytablecell nav-icon">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row locationBox">
+            <div class="col-md-12 ">
+                <div class="client_location">Cage</div>
+                <div class="displaytable">
+                    <div class="displaytablecell client_location">
+                        <!-- [ngClass]="{'mandatory': selectedCage == undefined}" -->
+                        <lsu-dropdown ngDefaultControl [(ngModel)]="selectedCage" [data]="cageDetails" [textField]="'CageName'" (ngModelChange)="onCageChange(selectedCage)" [placeHolder]="'Select a Cage'" class="revertDropdown"></lsu-dropdown>
+                    </div>
+                    <div class="displaytablecell nav-icon">
+                        <div>
+                            <button [routerLink]="['/scheduler']" routerLinkActive="active" class="navButton scheduler-view" suiPopup popupText="Treatment Scheduler" [popupPlacement]="'bottom right'"></button>
+                            <button [routerLink]="['/timeline']" routerLinkActive="active" class="navButton scheduler-listview" suiPopup popupText="Treatment Log" [popupPlacement]="'bottom right'"></button>
+                            <button [routerLink]="['/observation']" routerLinkActive="active" class="navButton scheduler-trendview" suiPopup popupText="Trend View" [popupPlacement]="'bottom right'"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<ng-template let-popup #popupTemplate>
+    <div class="toottip-content">{{popuptext}}
+    </div>
+</ng-template>

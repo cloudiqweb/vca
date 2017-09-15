@@ -1,0 +1,1371 @@
+{
+  "StatusCode": 200,
+  "Data": [
+    {
+      "VisitId": 452370674,
+      "Patient": {
+        "PatientId": 271843118,
+        "PetName": "Test",
+        "SpeciesId": null,
+        "Breed": null,
+        "DisplayAge": null,
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": null,
+        "TaskOverdueCount": 0,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": null,
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": null,
+        "isCritical":false
+
+      },
+      "Client": {
+        "ClientId": 262597076,
+        "FirstName": "Bob",
+        "LastName": "Sen",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370674,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": null,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-24T23:01:07.193",
+        "PrimaryResourceDisplayName": null,
+        "VisitInvoiceItems": []
+      }
+    },
+    {
+      "VisitId": 452370675,
+      "Patient": {
+        "PatientId": 271843024,
+        "PetName": "Jimmy01511",
+        "SpeciesId": 9,
+        "Breed": "Toad, Indonesian",
+        "DisplayAge": "6m",
+        "Weight": 10.43,
+        "NeuterStatus": 1,
+        "Sex": 1,
+        "Alert": null,
+        "TaskOverdueCount": 10,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": [
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "7:00",
+            "CompletedCount": 1,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 0,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "14:00",
+            "CompletedCount": 5,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "15:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "16:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "17:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "18:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "19:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "20:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "21:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "22:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "23:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          }
+        ],
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": "Gold And Black",
+        "WeightTakenDate": "2017-05-11",
+        "HasCareClubMembership": false,
+        "DateOfBirth": "2016-11-08",
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 262596845,
+        "FirstName": "Prem",
+        "LastName": "Kandalu",
+        "Title": 1,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370675,
+        "AppointmentType": "Medical",
+        "Location": "Cagetype 11535789910",
+        "VisitTypeIDs": [
+          1
+        ],
+        "PrimaryResourceId": null,
+        "NumberOfDays": 2,
+        "CheckinDate": "2017-05-25T07:30:58.103",
+        "PrimaryResourceDisplayName": null,
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 76306,
+            "PLNo": 603,
+            "SeqNo": 201,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 84653,
+            "PLNo": 53,
+            "SeqNo": 19,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 84653,
+            "PLNo": 53,
+            "SeqNo": 19,
+            "CompletionStatus": 37
+          }
+        ]
+      }
+    },
+    {
+      "VisitId": 452370677,
+      "Patient": {
+        "PatientId": 271842861,
+        "PetName": "Barco",
+        "SpeciesId": 1,
+        "Breed": null,
+        "DisplayAge": null,
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": null,
+        "TaskOverdueCount": 1,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": [
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "11:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          }
+        ],
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": null,
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 262582538,
+        "FirstName": "Dennis",
+        "LastName": "Ballance",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370677,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": null,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-25T10:06:04.703",
+        "PrimaryResourceDisplayName": null,
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 105973,
+            "PLNo": 54,
+            "SeqNo": 216,
+            "CompletionStatus": 34
+          }
+        ]
+      }
+    },
+    {
+      "VisitId": 452370678,
+      "Patient": {
+        "PatientId": 271842909,
+        "PetName": "Coso",
+        "SpeciesId": 25,
+        "Breed": null,
+        "DisplayAge": null,
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": null,
+        "TaskOverdueCount": 0,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": null,
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": null,
+        "isCritical": true
+      },
+      "Client": {
+        "ClientId": 262596496,
+        "FirstName": "Jessica",
+        "LastName": "Ayala",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370678,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": null,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-25T10:33:32.25",
+        "PrimaryResourceDisplayName": null,
+        "VisitInvoiceItems": []
+      }
+    },
+    {
+      "VisitId": 452370680,
+      "Patient": {
+        "PatientId": 271842911,
+        "PetName": "Brow12",
+        "SpeciesId": 1,
+        "Breed": "Cajun Squirrel Dog",
+        "DisplayAge": "7w",
+        "Weight": null,
+        "NeuterStatus": 1,
+        "Sex": 1,
+        "Alert": "Patient alerts",
+        "TaskOverdueCount": 0,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": [
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "14:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 2,
+            "SkippedCount": 0,
+            "OverdueCount": 0,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "15:00",
+            "CompletedCount": 2,
+            "ScheduledCount": 0,
+            "CancelledCount": 1,
+            "SkippedCount": 0,
+            "OverdueCount": 0,
+            "DueCount": 0
+          }
+        ],
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": "Variegated",
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": "2017-04-05",
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 17811401,
+        "FirstName": "Chandra",
+        "LastName": "Eliaa",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370680,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": 246200262,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-25T13:13:00.06",
+        "PrimaryResourceDisplayName": "Joshua Richard Chezum, DVM, DACVO",
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 84653,
+            "PLNo": 53,
+            "SeqNo": 19,
+            "CompletionStatus": 36
+          },
+          {
+            "InvoiceItemId": 84653,
+            "PLNo": 53,
+            "SeqNo": 19,
+            "CompletionStatus": 37
+          },
+          {
+            "InvoiceItemId": 97818,
+            "PLNo": 1,
+            "SeqNo": 1,
+            "CompletionStatus": 34
+          }
+        ]
+      }
+    },
+    {
+      "VisitId": 452370681,
+      "Patient": {
+        "PatientId": 17812960,
+        "PetName": "Butch",
+        "SpeciesId": 1,
+        "Breed": "Bulldog, French",
+        "DisplayAge": "3y 10m",
+        "Weight": 11.97,
+        "NeuterStatus": 2,
+        "Sex": 1,
+        "Alert": null,
+        "TaskOverdueCount": 0,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": null,
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": "Gray And White",
+        "WeightTakenDate": "2015-04-23",
+        "HasCareClubMembership": false,
+        "DateOfBirth": "2013-07-03",
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 17811945,
+        "FirstName": "Kevin",
+        "LastName": "Bothwell",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370681,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": null,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-25T13:39:52.553",
+        "PrimaryResourceDisplayName": null,
+        "VisitInvoiceItems": []
+      }
+    },
+    {
+      "VisitId": 452370682,
+      "Patient": {
+        "PatientId": 271843119,
+        "PetName": "Web",
+        "SpeciesId": 1,
+        "Breed": null,
+        "DisplayAge": null,
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": null,
+        "TaskOverdueCount": 4,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": [
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "15:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "16:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "17:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "18:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          }
+        ],
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": null,
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 262597077,
+        "FirstName": "Scheduler",
+        "LastName": "Treatment",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370682,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": null,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-25T14:01:07.883",
+        "PrimaryResourceDisplayName": null,
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 77155,
+            "PLNo": 1,
+            "SeqNo": 2,
+            "CompletionStatus": 34
+          }
+        ]
+      }
+    },
+    {
+      "VisitId": 452370683,
+      "Patient": {
+        "PatientId": 271843120,
+        "PetName": "Woofcare",
+        "SpeciesId": 6,
+        "Breed": null,
+        "DisplayAge": null,
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": null,
+        "TaskOverdueCount": 1,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": [
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "16:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          }
+        ],
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": null,
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 262597078,
+        "FirstName": "Capture",
+        "LastName": "Charge",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370683,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": null,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-25T14:04:09.743",
+        "PrimaryResourceDisplayName": null,
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 97744,
+            "PLNo": 1,
+            "SeqNo": 4,
+            "CompletionStatus": 34
+          }
+        ]
+      }
+    },
+    {
+      "VisitId": 452370685,
+      "Patient": {
+        "PatientId": 271843122,
+        "PetName": "Hauser",
+        "SpeciesId": 2,
+        "Breed": "Tabby",
+        "DisplayAge": "6y 5m",
+        "Weight": 4.08,
+        "NeuterStatus": 2,
+        "Sex": 1,
+        "Alert": "Hates cats",
+        "TaskOverdueCount": 35,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 3,
+        "HourlyTasks": [
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "14:00",
+            "CompletedCount": 1,
+            "ScheduledCount": 1,
+            "CancelledCount": 3,
+            "SkippedCount": 1,
+            "OverdueCount": 1,
+            "DueCount": 1
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "15:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 4,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "16:00",
+            "CompletedCount": 4,
+            "ScheduledCount": 0,
+            "CancelledCount": 1,
+            "SkippedCount": 1,
+            "OverdueCount": 3,
+            "DueCount": 10
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "17:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 3,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "18:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 4,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "19:00",
+            "CompletedCount": 2,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 5,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "20:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 4,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "21:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 4,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "22:00",
+            "CompletedCount": 3,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 4,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "23:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 4,
+            "DueCount": 0
+          }
+        ],
+        "Concerns": [
+          "Wellness",
+          "medical notes are where coming from"
+        ],
+        "Color": "Gray And Black",
+        "WeightTakenDate": "2017-05-25",
+        "HasCareClubMembership": false,
+        "DateOfBirth": "2010-12-25",
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 262597079,
+        "FirstName": "Kristin",
+        "LastName": "Ashton",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370685,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          1
+        ],
+        "PrimaryResourceId": 233000253,
+        "NumberOfDays": 2,
+        "CheckinDate": "2017-05-25T14:13:58.92",
+        "PrimaryResourceDisplayName": "Chou Martin",
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 87660,
+            "PLNo": 49,
+            "SeqNo": 250,
+            "CompletionStatus": 36
+          },
+          {
+            "InvoiceItemId": 94348,
+            "PLNo": 101,
+            "SeqNo": 325,
+            "CompletionStatus": 37
+          },
+          {
+            "InvoiceItemId": 97467,
+            "PLNo": 54,
+            "SeqNo": 110,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 100781,
+            "PLNo": 37,
+            "SeqNo": 84,
+            "CompletionStatus": 36
+          },
+          {
+            "InvoiceItemId": 100781,
+            "PLNo": 37,
+            "SeqNo": 84,
+            "CompletionStatus": 37
+          },
+          {
+            "InvoiceItemId": 105963,
+            "PLNo": 54,
+            "SeqNo": 195,
+            "CompletionStatus": 36
+          },
+          {
+            "InvoiceItemId": 105973,
+            "PLNo": 54,
+            "SeqNo": 216,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 106027,
+            "PLNo": 54,
+            "SeqNo": 302,
+            "CompletionStatus": 36
+          },
+          {
+            "InvoiceItemId": 106887,
+            "PLNo": 54,
+            "SeqNo": 677,
+            "CompletionStatus": 36
+          }
+        ]
+      }
+    },
+    {
+      "VisitId": 452370686,
+      "Patient": {
+        "PatientId": 271843082,
+        "PetName": "Mindful",
+        "SpeciesId": 1,
+        "Breed": null,
+        "DisplayAge": null,
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": "85623dfhgjs hgslhgskdjhglskjfghlsjknhgkljhgkdsjfhgkljbnwbemnr!~@#$%^(*)_+P{}|:\"L<M>?/*asdfhasdljkhsdkgjh 85623dfhgjshgslhgskdjhglskjfghlsjknhgkljhgkdsjfhgkljbnwbemnr!~@#$%^(*)_+P{}|:\"L<M>?/*asdfhasdljkhsdkgjh 85623dfhgjshgslhgskdjhglskjfghlsjknhgkljh",
+        "TaskOverdueCount": 3,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 3,
+        "HourlyTasks": [
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "16:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "17:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "18:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 1,
+            "DueCount": 0
+          }
+        ],
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": null,
+        "isCritical":true
+      },
+      "Client": {
+        "ClientId": 262596995,
+        "FirstName": "Fitz",
+        "LastName": "Chezum",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370686,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": 246200262,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-25T15:56:27.437",
+        "PrimaryResourceDisplayName": "Joshua Richard Chezum, DVM, DACVO",
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 85037,
+            "PLNo": 49,
+            "SeqNo": 270,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 100781,
+            "PLNo": 37,
+            "SeqNo": 84,
+            "CompletionStatus": 34
+          }
+        ]
+      }
+    },
+    {
+      "VisitId": 452370687,
+      "Patient": {
+        "PatientId": 271843060,
+        "PetName": "Carrie",
+        "SpeciesId": 2,
+        "Breed": null,
+        "DisplayAge": "1w",
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": null,
+        "TaskOverdueCount": 0,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": [
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "16:00",
+            "CompletedCount": 4,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 0,
+            "DueCount": 0
+          }
+        ],
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": "2017-05-18",
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 262596995,
+        "FirstName": "Fitz",
+        "LastName": "Chezum",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370687,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": 246200262,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-25T16:38:18.63",
+        "PrimaryResourceDisplayName": "Joshua Richard Chezum, DVM, DACVO",
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 75705,
+            "PLNo": 53,
+            "SeqNo": 1,
+            "CompletionStatus": 37
+          }
+        ]
+      }
+    },
+    {
+      "VisitId": 452370688,
+      "Patient": {
+        "PatientId": 271829179,
+        "PetName": "Hope",
+        "SpeciesId": 2,
+        "Breed": null,
+        "DisplayAge": null,
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": null,
+        "TaskOverdueCount": 0,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 2,
+        "HourlyTasks": [
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "16:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 0,
+            "DueCount": 0
+          },
+          {
+            "Date": "05/25/2017",
+            "Day": 1,
+            "Hour": "17:00",
+            "CompletedCount": 0,
+            "ScheduledCount": 0,
+            "CancelledCount": 0,
+            "SkippedCount": 0,
+            "OverdueCount": 0,
+            "DueCount": 0
+          }
+        ],
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": null,
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 260721117,
+        "FirstName": "Jean",
+        "LastName": "Grey",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370688,
+        "AppointmentType": "Medical",
+        "Location": "Cat- Window condo 1",
+        "VisitTypeIDs": [
+          1
+        ],
+        "PrimaryResourceId": 233000254,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-25T16:39:14.14",
+        "PrimaryResourceDisplayName": "Dr. Ryan",
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 75273,
+            "PLNo": 11,
+            "SeqNo": 31,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 91141,
+            "PLNo": 11,
+            "SeqNo": 4,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 97818,
+            "PLNo": 1,
+            "SeqNo": 1,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 100781,
+            "PLNo": 37,
+            "SeqNo": 84,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 110737,
+            "PLNo": 101,
+            "SeqNo": 905,
+            "CompletionStatus": 34
+          }
+        ]
+      }
+    },
+    {
+      "VisitId": 452370690,
+      "Patient": {
+        "PatientId": 271842860,
+        "PetName": "Abby",
+        "SpeciesId": 1,
+        "Breed": null,
+        "DisplayAge": null,
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": null,
+        "TaskOverdueCount": 0,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": null,
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": null,
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 262582538,
+        "FirstName": "Dennis",
+        "LastName": "Ballance",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370690,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": null,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-26T03:48:02.18",
+        "PrimaryResourceDisplayName": null,
+        "VisitInvoiceItems": []
+      }
+    },
+    {
+      "VisitId": 452370692,
+      "Patient": {
+        "PatientId": 271843039,
+        "PetName": "Blue",
+        "SpeciesId": 2,
+        "Breed": null,
+        "DisplayAge": null,
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": null,
+        "TaskOverdueCount": 0,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 0,
+        "HourlyTasks": null,
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": null,
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 262597039,
+        "FirstName": "Marina",
+        "LastName": "Blue",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370692,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": 248000305,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-26T13:17:21.947",
+        "PrimaryResourceDisplayName": "Dr Twnty Won",
+        "VisitInvoiceItems": []
+      }
+    },
+    {
+      "VisitId": 452370693,
+      "Patient": {
+        "PatientId": 271842865,
+        "PetName": "Charlie",
+        "SpeciesId": 2,
+        "Breed": null,
+        "DisplayAge": null,
+        "Weight": null,
+        "NeuterStatus": null,
+        "Sex": null,
+        "Alert": null,
+        "TaskOverdueCount": 0,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 2,
+        "HourlyTasks": null,
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": null,
+        "WeightTakenDate": null,
+        "HasCareClubMembership": false,
+        "DateOfBirth": null,
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 262582538,
+        "FirstName": "Dennis",
+        "LastName": "Ballance",
+        "Title": null,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370693,
+        "AppointmentType": "Medical",
+        "Location": "ICU 2",
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": 246200262,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-26T13:58:03",
+        "PrimaryResourceDisplayName": "Joshua Richard Chezum, DVM, DACVO",
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 77155,
+            "PLNo": 1,
+            "SeqNo": 2,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 85037,
+            "PLNo": 49,
+            "SeqNo": 270,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 94062,
+            "PLNo": 101,
+            "SeqNo": 210,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 105974,
+            "PLNo": 54,
+            "SeqNo": 217,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 105974,
+            "PLNo": 54,
+            "SeqNo": 217,
+            "CompletionStatus": 37
+          }
+        ]
+      }
+    },
+    {
+      "VisitId": 452370694,
+      "Patient": {
+        "PatientId": 17815275,
+        "PetName": "Beauregard",
+        "SpeciesId": 1,
+        "Breed": "Hound, Basset",
+        "DisplayAge": "2y 8m",
+        "Weight": 17.26,
+        "NeuterStatus": 2,
+        "Sex": 1,
+        "Alert": "puppy bundle",
+        "TaskOverdueCount": 0,
+        "TaskDueCount": 0,
+        "TaskNotScheduledCount": 2,
+        "HourlyTasks": null,
+        "Concerns": [
+          "Wellness"
+        ],
+        "Color": "Black And Brown",
+        "WeightTakenDate": "2015-05-06",
+        "HasCareClubMembership": false,
+        "DateOfBirth": "2014-09-17",
+        "isCritical":false
+      },
+      "Client": {
+        "ClientId": 17813504,
+        "FirstName": "Colleen",
+        "LastName": "Hennessy",
+        "Title": 2,
+        "CompanyName": ""
+      },
+      "Visit": {
+        "VisitId": 452370694,
+        "AppointmentType": "Medical",
+        "Location": null,
+        "VisitTypeIDs": [
+          2
+        ],
+        "PrimaryResourceId": 248000296,
+        "NumberOfDays": 1,
+        "CheckinDate": "2017-05-28T23:26:24.573",
+        "PrimaryResourceDisplayName": "Ravi",
+        "VisitInvoiceItems": [
+          {
+            "InvoiceItemId": 74147,
+            "PLNo": 161,
+            "SeqNo": 31,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 75792,
+            "PLNo": 101,
+            "SeqNo": 374,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 79652,
+            "PLNo": 5,
+            "SeqNo": 1,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 81755,
+            "PLNo": 5,
+            "SeqNo": 4,
+            "CompletionStatus": 34
+          },
+          {
+            "InvoiceItemId": 86310,
+            "PLNo": 5,
+            "SeqNo": 10,
+            "CompletionStatus": 34
+          }
+        ]
+      }
+    }
+  ],
+  "Links": [
+    {
+      "Rel": "self",
+      "Href": "https://lapmsqa-ns01.vcaantech.com/WoofwareWebAPI/API/CheckedInPatients/05/25/2017%2000:00:00/TaskOccurrenceStatusCount",
+      "MethodType": "GET"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+<div class="menu1">
+    <div class="carenote-outer popuparrow">
+        <div class="col-md-12 popupheader bottom-margin-15px">
+            <div class="text">Add Care Note</div>
+            <div class="icon closeButton" (click)="closeModal() ">
+            </div>
+        </div>
+        <div class="col-md-12 bottom-margin-15px">
+            <div>
+                <textarea class="textarea" cols="30" rows="3" placeholder="Add care note here." required [(ngModel)]="newCareNote.Notes">
+                </textarea>
+            </div>
+        </div>
+        <div class="col-md-12 bottom-margin-15px">
+            <button class="ui blue button pull-right" (click)="saveCareNotes()">Add care note</button>
+            <button *ngIf="newCareNote.Notes!==''" class="ui basic button link pull-right" (click)="newCareNote.Notes=''">Cancel</button>
+            <button *ngIf="newCareNote.Notes===''" class="ui basic button link pull-right" (click)="closeModal()">Close</button>
+
+        </div>
+    </div>
+    <div class="care-description" *ngIf="validationString!==''">
+        {{validationString}}
+    </div>
+
+    <div class="carenote-scrolling menu">
+        <div class="carenote-outer_new" *ngFor="let note of careNotes"   (mouseenter)="showRemove(note)" (mouseleave)="hideRemove()">
+            <div class="col-md-11" >
+                <div class="header carenote-head">
+                    <div class="careNotesDate">
+                        <ng-container *ngIf="note.LastModifiedDate">
+                            {{globalsService.groupDate(note.LastModifiedDate,'CareNote')}}
+                        </ng-container>
+                        <ng-container *ngIf="!note.LastModifiedDate">
+                            {{globalsService.groupDate(note.CreatedDate,'CareNote')}}
+                        </ng-container>
+                    </div>
+                    <div *ngIf="note.LastModifiedBy">
+                        &nbsp;by&nbsp;{{globalsService.nameFormat(note.LastModifiedBy)}}
+                    </div>
+
+                    <div *ngIf="!note.LastModifiedBy">
+                        &nbsp;by&nbsp; {{globalsService.nameFormat(note.CreatedBy)}}
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-md-1" >
+                <div (click)="removeNote(note)" class="ui icon button transparent pull-right closeButton" *ngIf="editEligibilty(note)&&removeNoteId===note.CareNotesId"></div>
+            </div>
+            <div class="col-md-12 bottom-margin-15px" (click)="editCare(note)">
+                <div class="care-description" *ngIf="toEditCare!==note.CareNotesId"> {{note.Notes}}</div>
+                <div *ngIf="editEligibilty(note)&&toEditCare===note.CareNotesId">
+                    <textarea class="textarea" (blur)="passEditCareNote();saveCareNotes()" rows="2" placeholder="{{editCareNote.Notes}}" required [(ngModel)]="editCareNote.Notes">
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="item none"></div>
+    </div>
+</div>
