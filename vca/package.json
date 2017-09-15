@@ -25,7 +25,6 @@
     "@angular/router": "^4.3.4",
     "@angular/tsc-wrapped": "^4.3.4",
     "@angular/upgrade": "^4.3.4",
-	"@angular/cli": "^1.4.2",
     "angular-in-memory-web-api": "^0.3.1",
     "angular2-semantic-ui": "^2.0.3",
     "angulartics2": "^2.2.1",
