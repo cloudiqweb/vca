@@ -13,7 +13,7 @@ Param(
 
 )
 
-$Build_Location = 'C:\inetpub\VCAChargeCapture';
+$Build_Location = 'vca\dist';
 
 $BaseRef = 'VCAChargeCapture';
 
