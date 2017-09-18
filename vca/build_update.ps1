@@ -17,7 +17,7 @@ $Build_Location = 'vca\dist';
 
 $BaseRef = 'VCAChargeCapture';
 
-$ConfigFolderPath = $Build_Location + 'vca\dist\assets\config\';
+$ConfigFolderPath = $Build_Location + '\assets\config\';
 
 IF($BaseRef -and $BaseRef -ne '') {
 
