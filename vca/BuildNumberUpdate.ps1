@@ -1,4 +1,4 @@
-﻿$CurrentBuildNumber =  $(Build.BuildNumber);
+﻿$CurrentBuildNumber =  $env:Build_BuildNumber;
 Try {
     if($VersionSuffix -eq $null) {
         $VersionSuffix = "V ";
